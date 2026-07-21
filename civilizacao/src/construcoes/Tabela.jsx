@@ -1,9 +1,10 @@
 export default function Tabela({ colunas, dados }) {
-  return (
+  
+return (
     <div className="overflow-x-auto">
       <table className="w-full">
         <thead>
-          <tr className="border-b border-gray-700/50">
+          <tr className="border-b border-gray-700/50">    
             {colunas.map((coluna) => (
               <th
                 key={coluna.chave}

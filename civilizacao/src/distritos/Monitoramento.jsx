@@ -17,7 +17,7 @@ export default function Monitoramentos() {
     { chave: "id", titulo: "ID" },
     { chave: "nome", titulo: "Nome" },
     { chave: "valor", titulo: "Valor" },
-    { chave: "alerta", titulo: "Alerta" },
+    { chave: "perfil", titulo: "Perfil" },
   ];
 
   return (

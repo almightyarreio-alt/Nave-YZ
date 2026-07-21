@@ -4,6 +4,8 @@ import Painel from './distritos/Painel'
 import Perfis from './distritos/Perfis'
 import Fluxos from './distritos/Fluxos'
 import Monitoramentos from './distritos/Monitoramento'
+import Execucao from './distritos/Execucao'
+// import Execucao from './distritos/Execucao'
 
 //import TemplateDashboard from './arquitetura/TemplateDashborad'
 // ... outros distritos
@@ -17,6 +19,7 @@ export default function App() {
           <Route path="/perfis" element={<Perfis />} />
           <Route path="/fluxos" element={<Fluxos />} />
           <Route path="/monitoramentos" element={<Monitoramentos />} />
+          <Route path="/execucoes" element={<Execucao />} />
           {/* futuros Distritos */}
         </Route>
       </Routes>

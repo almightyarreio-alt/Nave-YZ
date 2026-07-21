@@ -24,3 +24,15 @@ export const buscarMonitoramentos = async () => {
   const response = await api.get("/api/monitoramentos");
   return response.data.dados;
 };
+
+// Monitoramentos por perfil
+export const buscarMonitoramentosPorPerfil = async (perfilId) => {
+  const response = await api.get(`/api/monitoramento/perfil/${perfilId}`);
+  return response.data;
+};
+
+// Executar fluxo no perfil
+export const executarFluxo = async (perfilId, fluxoId) => {
+  const response = await api.post(`/api/executar/fluxo/${perfilId}/${fluxoId}`);
+  return response.data;
+};

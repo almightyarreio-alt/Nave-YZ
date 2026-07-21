@@ -1,0 +1,4 @@
+Playwright
+FastAPI
+pydantic
+uvicorn

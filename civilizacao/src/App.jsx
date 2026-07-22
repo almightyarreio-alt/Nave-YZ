@@ -5,7 +5,7 @@ import Perfis from './distritos/Perfis'
 import Fluxos from './distritos/Fluxos'
 import Monitoramentos from './distritos/Monitoramento'
 import Execucao from './distritos/Execucao'
-// import Execucao from './distritos/Execucao'
+
 
 //import TemplateDashboard from './arquitetura/TemplateDashborad'
 // ... outros distritos

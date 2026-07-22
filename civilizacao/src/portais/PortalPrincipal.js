@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const api = axios.create({
-  baseURL: 'http://localhost:8000', // seu servidor FastAPI
+  baseURL: 'http://localhost:7000', // seu servidor FastAPI
 })
 
 export const buscarSaudacao = async () => {

@@ -11,7 +11,7 @@ from playwright.sync_api import (
     TimeoutError as PlaywrightTimeoutError
 )
 
-from .base import HabitanteBase
+from .habitante import HabitanteBase
 from .interfaces import LeisProtocol, MemoriaProtocol, CronicaProtocol
 from .excecoes import (
     HabitanteAdormecido,

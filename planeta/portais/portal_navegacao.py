@@ -1,6 +1,6 @@
 from fastapi import APIRouter
-from cifras.cifra_navegacao import (CifraDespertar, CifraResposta)
-from habitantes.navegador import (habitante_navegador)
+from planeta.cifras.cifra_navegacao import (CifraDespertar, CifraResposta)
+from planeta.habitantes.navegador import (habitante_navegador)
 
 portal = APIRouter(
     prefix="/portal/navegacao",

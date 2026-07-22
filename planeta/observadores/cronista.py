@@ -1,73 +1,55 @@
-import json
-import uuid
+"""
+📜 Cronista
 
-from pathlib import Path
-from datetime import datetime, timezone
+Primeiro Observador da Nave YZ.
+
+Responsável por registrar
+aquilo que o planeta percebe.
+"""
 
 
-class CronistaUniversal:
+from .observador import Observador
+
+
+class Cronista(Observador):
+
 
     def __init__(self):
 
-        self.arquivo_cronicas = (
-            Path(__file__)
-            .parent.parent
-            / "cronicas"
-            / "universal.jsonl"
+        super().__init__(
+
+            nome="Cronista",
+
+            dominio="SISTEMA",
+
+            missao="Registrar acontecimentos do planeta"
+
         )
 
-        self.arquivo_cronicas.parent.mkdir(
-            parents=True,
-            exist_ok=True
-        )
+        self.registros = []
 
 
-    def registrar(
-        self,
-        origem: dict,
-        evento: str,
-        descricao: str,
-        dados: dict | None = None,
-        nivel: str = "INFO"
-    ):
+
+    def observar(self, sinal):
 
         registro = {
 
-            "id": f"evt_{uuid.uuid4().hex[:12]}",
+            "observador": self.nome,
 
-            "momento": datetime.now(
-                timezone.utc
-            ).isoformat(),
+            "sinal": sinal.to_dict()
 
-            "origem": origem,
-
-            "evento": evento,
-
-            "nivel": nivel,
-
-            "descricao": descricao,
-
-            "dados": dados or {}
         }
 
 
-        with open(
-            self.arquivo_cronicas,
-            "a",
-            encoding="utf-8"
-        ) as arquivo:
-
-            arquivo.write(
-                json.dumps(
-                    registro,
-                    ensure_ascii=False
-                )
-                + "\n"
-            )
+        self.registros.append(
+            registro
+        )
 
 
         return registro
 
 
 
-cronista = CronistaUniversal()
+    def historico(self):
+
+        return self.registros

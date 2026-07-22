@@ -18,30 +18,32 @@ class CronicaProtocol(Protocol):
     """Contrato para o sistema de Crônicas."""
     def registrar(self, origem: Dict, evento: str, descricao: str, dados: Dict) -> None: ...
 
-class HabitanteInterface(ABC):
-    """Interface base para todos os Habitantes."""
-    
-    @abstractmethod
-    def profissao(self) -> str:
-        """Retorna a profissão do Habitante."""
-        pass
-    
-    @abstractmethod
-    def despertar(self, contexto: Dict[str, Any]) -> Dict[str, Any]:
-        """Desperta o Habitante para o trabalho."""
-        pass
-    
-    @abstractmethod
-    def executar(self, acao: str, contexto: Dict[str, Any]) -> Dict[str, Any]:
-        """Executa uma ação específica."""
-        pass
-    
-    @abstractmethod
-    def recolher(self) -> Dict[str, Any]:
-        """Recolhe o Habitante ao descanso."""
-        pass
-    
-    @abstractmethod
-    def esta_desperto(self) -> bool:
-        """Verifica se o Habitante está desperto."""
-        pass
+class Habitante:
+
+    def __init__(
+        self,
+        leis,
+        memoria,
+        cronista
+    ):
+        self.leis = leis
+        self.memoria = memoria
+        self.cronista = cronista
+
+# class HabitantePerfil(Habitante):
+
+#     def criar(...):
+
+#     def remover(...):
+
+#     def localizar(...):
+
+# class HabitanteNavegador(Habitante):
+
+#     def iniciar()
+
+#     def navegar()
+
+#     def clicar()
+
+#     def fechar()

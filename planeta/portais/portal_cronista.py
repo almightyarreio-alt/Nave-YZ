@@ -1,10 +1,10 @@
 from fastapi import APIRouter
 
-from cifras.cifra_cronista import (
+from planeta.cifras.cifra_cronista import (
     CifraRegistroCronica
 )
 
-from observadores.cronista import cronista
+from planeta.habitantes.cronista import cronista
 
 
 portal = APIRouter(

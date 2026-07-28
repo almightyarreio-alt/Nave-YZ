@@ -1,0 +1,5 @@
+2026/07/24-15:55:10.250 2c68 Creating DB C:\Users\User\Desktop\Projetos\Nave_YZ_VER1\Nave-YZ\backend\profiles\ITL\Default\Local Storage\leveldb since it was missing.
+2026/07/24-15:55:10.310 2c68 Reusing MANIFEST C:\Users\User\Desktop\Projetos\Nave_YZ_VER1\Nave-YZ\backend\profiles\ITL\Default\Local Storage\leveldb/MANIFEST-000001
+2026/07/24-15:58:37.157 3bc8 Level-0 table #5: started
+2026/07/24-15:58:37.175 3bc8 Level-0 table #5: 19596 bytes OK
+2026/07/24-15:58:37.178 3bc8 Delete type=0 #3

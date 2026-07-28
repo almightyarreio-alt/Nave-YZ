@@ -1,0 +1,10 @@
+{
+  "name": "Meu Fluxo",
+  "steps": [
+    
+    {
+      "action": "stop_flow",
+      "reason": "Fluxo interrompido manualmente."
+    }
+  ]
+}

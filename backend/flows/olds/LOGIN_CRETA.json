@@ -1,0 +1,34 @@
+{
+  "name": "Meu Fluxo",
+  "steps": [
+    {
+      "action": "navigate",
+      "url": "https://licitacao-app.base44.app/login",
+      "wait_until": "load"
+    },
+    {
+      "action": "fill",
+      "selector": "[placeholder='you@example.com']",
+      "value": "{LOGIN}"
+    },
+    {
+      "action": "fill",
+      "selector": "[type='password']",
+      "value": "{SENHA}"
+    },
+    {
+      "action": "click",
+      "selector": "[type='submit']"
+    },
+    {
+          "action": "wait",
+          "seconds": 5
+        }
+    ,
+    {
+              "action": "flow",
+              "flow": "CHAT_VER"
+            }
+
+  ]
+}

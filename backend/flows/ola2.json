@@ -1,0 +1,10 @@
+{
+  "name": "ola",
+  "steps": [
+    {
+      "action": "notify",
+      "webhook": "http://localhost:5678/notify",
+      "payload": "ola"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "name": "Meu Fluxo",
+  "steps": [
+    {
+      "action": "set",
+      "var": "x",
+      "value": "1"
+    },
+    {
+      "action": "set",
+      "var": "w",
+      "value": "2"
+    },
+    {
+      "action": "compare",
+      "var": "x",
+      "value": "w",
+      "on_true": [
+        {
+          "action": "navigate",
+          "url": "http://127.0.0.1:8000/"
+        }
+      ],
+      "on_false": [
+        {
+          "action": "flow",
+          "flow": "LOGIN_CRETA"
+        }
+      ]
+    }
+  ]
+}

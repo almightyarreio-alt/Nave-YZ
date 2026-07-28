@@ -1,0 +1,9 @@
+{"name": "ABRIR_DISPUTA",
+      "steps": [
+        {
+          "action": "navigate",
+          "url": "https://portal.licitanet.com.br/sala-disputa-concorrencia/{ID_DISPUTA_LICITANET_CAMACARI}"
+        }
+      ]
+
+    }

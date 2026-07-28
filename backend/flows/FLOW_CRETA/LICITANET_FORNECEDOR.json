@@ -1,0 +1,30 @@
+{
+  "name": "FORNECEDOR",
+  "steps": [
+    {
+      "action": "click",
+      "selector":"#app > div > main > section > div > article:nth-child(8) > div > div"
+    }
+    ,    
+    {
+      "action": "wait_for_selector",
+      "selector": "#fecharModalApp",
+      "timeout": 15000,
+      "var": "MODAL_FECHAR"
+    },
+    {
+      "action": "compare",
+      "var": "MODAL_FECHAR",
+      "operator": "==",
+      "value": "true", 
+      "on_true": [
+          {
+            "action": "click",
+            "selector": "#fecharModalApp"
+          }
+        ]
+    }
+    
+   
+  ]
+}

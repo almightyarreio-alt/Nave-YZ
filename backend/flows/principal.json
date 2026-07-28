@@ -1,0 +1,24 @@
+{"name": "Principal",
+  "steps": [
+    {
+      "action": "flow",
+      "flow": "CHECAR_ESTADO.json"
+    },
+    {
+      "action": "flow",
+      "flow": "VALIDAR_AUTORIZACAO_VISITANTE.json"
+    },
+    {
+      "action": "flow",
+      "flow": "VALIDAR_SESSAO.json"
+    },
+    {
+      "action": "flow",
+      "flow": "ABRIR_DISPUTA.json"
+    },
+    {
+      "action": "flow",
+      "flow": "MONITOR_CHAT.json"
+    }
+  ]
+}

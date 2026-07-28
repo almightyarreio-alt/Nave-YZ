@@ -1,0 +1,31 @@
+{
+  "name": "expirar",
+  "steps": [
+    {
+      "action": "wait_for_selector",
+      "selector": ".sweet-alert",
+      "var": "expirar"
+    },
+    {
+      "action": "compare",
+      "var": "expirar",
+      "value": "true",
+      "on_true": [
+        {
+          "action": "flow",
+          "flow": "LICITANET_LOGIN_CRETA.json"
+        },
+        {
+          "action": "flow",
+          "flow": "expirar.json"
+        }
+      ],
+      "on_false": [
+        {
+          "action": "flow",
+          "flow": "expirar.json"
+        }
+      ]
+    }
+  ]
+}

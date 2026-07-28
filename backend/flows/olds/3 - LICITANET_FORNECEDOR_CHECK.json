@@ -1,0 +1,39 @@
+{
+  "name": "LICITANET_FORNECEDOR_CHECK",
+  "steps": [
+    {
+      "action": "wait_for_selector",
+      "selector": "#app > div > main > section > div > article:nth-child(8) > div",
+      "timeout": 15000,
+      "var": "FORNECEDOR"
+    },
+    {
+      "action": "compare",
+      "var": "FORNECEDOR",
+      "value": "true",
+      "on_true": [
+        {
+          "action": "click",
+          "selector": "body > div.sweet-alert.showSweetAlert.visible > div.sa-button-container > div > button"
+        },
+        {
+      "action": "wait",
+      "seconds": "3"
+    },
+    {
+      "action": "navigate",
+      "url": "https://portal.licitanet.com.br/sala-disputa-concorrencia/187154"
+    }
+      ],
+      "on_false": [
+        {
+          "action": "notify",
+          "webhook": "http://localhost:5678/notify",
+          "playload": "AÇÃO REQUERIDA!"
+        }
+      ]
+    }
+    
+    
+  ]
+}

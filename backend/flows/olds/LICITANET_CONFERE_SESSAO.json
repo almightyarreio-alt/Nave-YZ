@@ -1,0 +1,33 @@
+{
+  "name": "LICITANET_CONFERE_SESSAO",
+  "steps": [
+    {
+      "action": "wait_for_selector",
+      "selector": "body > div.sweet-alert.visible.showSweetAlert",
+      "timeout": 15000,
+      "var": "LICITANET_SESSION_EXPIRED"
+    },
+    {
+      "action": "compare",
+      "var": "LICITANET_SESSION_EXPIRED",
+      "value": "true",
+      "on_true": [
+        {
+          "action": "click",
+          "selector": "body > div.sweet-alert.visible.showSweetAlert > div.sa-button-container > div > button"
+        },
+        {
+          "action": "flow",
+          "flow": "LICITANET_LOGIN_006-2026.json"
+        }
+      ],
+      "on_false": [
+        {
+          "action": "notify",
+          "webhook": "http://localhost:5678/notify",
+          "payload": "SESSÃO EXPIRADA! ATENÇÃO REQUERIDA"
+        }
+      ]
+    }
+  ]
+}

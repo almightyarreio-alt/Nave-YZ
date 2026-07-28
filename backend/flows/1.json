@@ -1,0 +1,70 @@
+{
+  "name": "Meu Fluxo",
+  "steps": [
+    {
+      "action": "monitor",
+      "name": "teste",
+      "selector": "#root > div.flex.h-screen.overflow-hidden.bg-background > div.flex-1.flex.flex-col.min-w-0.overflow-hidden > main > div",
+      "interval": 5,
+      "save_snapshots": true,
+      "timeout": 30,
+      "max_history": 100,
+
+      "on_start": [
+        {
+          "action": "notify",
+          "webhook": "http://localhost:5678/notify",
+          "payload": "MONITOR INICIADO"
+        }
+      ],
+
+      "on_found": [
+        {
+          "action": "notify",
+          "webhook": "http://localhost:5678/notify",
+          "payload": "ELEMENTO ENCONTRADO"
+        }
+      ],
+
+      "on_change": [
+        {
+          "action": "notify",
+          "webhook": "http://localhost:5678/notify",
+          "payload": "HTML ALTERADO"
+        }
+      ],
+
+      "on_not_found": [
+        {
+          "action": "notify",
+          "webhook": "http://localhost:5678/notify",
+          "payload": "ELEMENTO NÃO ENCONTRADO"
+        }
+      ],
+
+      "on_error": [
+        {
+          "action": "notify",
+          "webhook": "http://localhost:5678/notify",
+          "payload": "ERRO NO MONITOR"
+        }
+      ],
+
+      "on_stop": [
+        {
+          "action": "notify",
+          "webhook": "http://localhost:5678/notify",
+          "payload": "MONITOR FINALIZADO"
+        }
+      ],
+
+      "on_timeout": [
+        {
+          "action": "notify",
+          "webhook": "http://localhost:5678/notify",
+          "payload": "TIMEOUT DO MONITOR"
+        }
+      ]
+    }
+  ]
+}

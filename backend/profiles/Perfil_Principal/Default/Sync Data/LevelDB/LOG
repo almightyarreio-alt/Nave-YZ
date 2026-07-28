@@ -1,2 +1,3 @@
-2026/07/24-15:45:50.672 1500 Creating DB C:\Users\User\Desktop\Projetos\Nave_YZ_VER1\Nave-YZ\backend\profiles\Perfil_Principal\Default\Sync Data\LevelDB since it was missing.
-2026/07/24-15:45:50.688 1500 Reusing MANIFEST C:\Users\User\Desktop\Projetos\Nave_YZ_VER1\Nave-YZ\backend\profiles\Perfil_Principal\Default\Sync Data\LevelDB/MANIFEST-000001
+2026/07/28-10:16:01.014 3544 Reusing MANIFEST C:\Users\User\Desktop\Projetos\Nave_YZ_VER1\Nave-YZ\backend\profiles\Perfil_Principal\Default\Sync Data\LevelDB/MANIFEST-000001
+2026/07/28-10:16:01.014 3544 Recovering log #3
+2026/07/28-10:16:01.015 3544 Reusing old log C:\Users\User\Desktop\Projetos\Nave_YZ_VER1\Nave-YZ\backend\profiles\Perfil_Principal\Default\Sync Data\LevelDB/000003.log 

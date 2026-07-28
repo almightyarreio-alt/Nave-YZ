@@ -1,2 +1,3 @@
-2026/07/24-15:45:50.682 14f4 Creating DB C:\Users\User\Desktop\Projetos\Nave_YZ_VER1\Nave-YZ\backend\profiles\Perfil_Principal\Default\Site Characteristics Database since it was missing.
-2026/07/24-15:45:50.734 14f4 Reusing MANIFEST C:\Users\User\Desktop\Projetos\Nave_YZ_VER1\Nave-YZ\backend\profiles\Perfil_Principal\Default\Site Characteristics Database/MANIFEST-000001
+2026/07/28-10:16:00.953 3320 Reusing MANIFEST C:\Users\User\Desktop\Projetos\Nave_YZ_VER1\Nave-YZ\backend\profiles\Perfil_Principal\Default\Site Characteristics Database/MANIFEST-000001
+2026/07/28-10:16:00.957 3320 Recovering log #3
+2026/07/28-10:16:00.958 3320 Reusing old log C:\Users\User\Desktop\Projetos\Nave_YZ_VER1\Nave-YZ\backend\profiles\Perfil_Principal\Default\Site Characteristics Database/000003.log 

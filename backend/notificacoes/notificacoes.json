@@ -1,0 +1,16 @@
+{
+  "notifications": {
+    "enabled": true
+  },
+  "toast": {
+    "enabled": true
+  },
+  "sound": {
+    "enabled": true,
+    "file": "mixkit-arcade-retro-game-over-213.wav"
+  },
+  "webhook": {
+    "enabled": false,
+    "url": "http://localhost:5678/notify"
+  }
+}

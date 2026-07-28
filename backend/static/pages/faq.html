@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🧩 Navyauto – FAQ (Dúvidas Frequentes)</title>
+  <style>
+    /* RESET E BASE */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+      background: #f1f5f9;
+      color: #0f172a;
+      line-height: 1.6;
+      padding: 2rem 1rem;
+    }
+    .container {
+      max-width: 850px;
+      margin: 0 auto;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+    .header h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #0f172a, #3b82f6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .header p {
+      color: #475569;
+      font-size: 1.1rem;
+    }
+    .header p a {
+      color: #3b82f6;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .header p a:hover {
+      text-decoration: underline;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 1.8rem 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      border: 1px solid #e2e8f0;
+    }
+    .card h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .card .sub {
+      color: #64748b;
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
+    }
+
+    /* ========== ESTILOS DO FAQ (ACCORDION) ========== */
+    .faq-item {
+      border: 1px solid #e9edf2;
+      border-radius: 10px;
+      margin-bottom: 0.8rem;
+      background: #fafcfd;
+      transition: border-color 0.15s;
+    }
+    .faq-item:hover {
+      border-color: #cbd5e1;
+    }
+
+    .faq-item summary {
+      padding: 0.9rem 1.2rem;
+      font-weight: 600;
+      font-size: 1rem;
+      color: #1e293b;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      list-style: none;
+      border-radius: 10px;
+      transition: background 0.15s;
+      user-select: none;
+    }
+    .faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+    .faq-item summary::after {
+      content: "▶";
+      margin-left: auto;
+      font-size: 0.8rem;
+      color: #94a3b8;
+      transition: transform 0.2s;
+    }
+    .faq-item[open] summary::after {
+      transform: rotate(90deg);
+    }
+    .faq-item summary:hover {
+      background: #f1f5f9;
+    }
+    .faq-item .answer {
+      padding: 0 1.2rem 1.2rem 1.2rem;
+      color: #334155;
+      border-top: 1px dashed #e2e8f0;
+      margin-top: 0.2rem;
+      padding-top: 0.8rem;
+    }
+    .faq-item .answer code {
+      background: #e9edf2;
+      padding: 0.1rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      color: #0f172a;
+    }
+    .faq-item .answer .highlight-box-mini {
+      background: #f0fdf4;
+      border-left: 4px solid #22c55e;
+      padding: 0.5rem 0.8rem;
+      border-radius: 6px;
+      margin: 0.5rem 0;
+      font-size: 0.95rem;
+    }
+    .faq-item .answer .highlight-box-mini.warn {
+      background: #fef9e7;
+      border-left-color: #f59e0b;
+    }
+
+    .faq-item .answer ul,
+    .faq-item .answer ol {
+      margin-left: 1.2rem;
+      margin-top: 0.3rem;
+    }
+    .faq-item .answer li {
+      margin-bottom: 0.2rem;
+    }
+
+    .emoji-big {
+      font-size: 1.4rem;
+      line-height: 1;
+    }
+
+    .footer {
+      text-align: center;
+      color: #94a3b8;
+      font-size: 0.85rem;
+      margin-top: 2rem;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 1.5rem;
+    }
+    .footer a {
+      color: #3b82f6;
+      text-decoration: none;
+    }
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 1rem;
+      }
+      .card {
+        padding: 1.2rem;
+      }
+      .faq-item summary {
+        padding: 0.7rem 1rem;
+        font-size: 0.95rem;
+      }
+      .faq-item .answer {
+        padding: 0 1rem 1rem 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Cabeçalho -->
+  <header class="header">
+    <h1>🧩 Navyauto · FAQ</h1>
+    <p>Dúvidas frequentes sobre o <strong>Navyauto Blocks</strong> — tire suas dúvidas e comece a automatizar sem medo!</p>
+  </header>
+
+  <!-- FAQ -->
+  <section class="card">
+    <h2>❓ Perguntas Frequentes</h2>
+    <p class="sub">Clique em uma pergunta para ver a resposta.</p>
+
+    <!-- 1 -->
+    <details class="faq-item">
+      <summary><span class="emoji-big">🤔</span> O que é o Navyauto Blocks?</summary>
+      <div class="answer">
+        <p>É uma ferramenta visual que permite criar automações para navegador <strong>sem precisar programar</strong>. Você arrasta blocos (como "Navegar", "Preencher", "Clicar") para uma área de montagem, preenche os dados e o sistema gera um arquivo <strong>JSON</strong> que pode ser executado pelo Navyauto (ou qualquer outra ferramenta compatível com Playwright/JSON).</p>
+        <p>É ideal para quem nunca programou, mas quer automatizar tarefas repetitivas em sites.</p>
+      </div>
+    </details>
+
+    <!-- 2 -->
+    <details class="faq-item">
+      <summary><span class="emoji-big">🔍</span> Como faço para achar o "Seletor CSS" de um elemento?</summary>
+      <div class="answer">
+        <p>Essa é a dúvida mais importante! Você tem <strong>duas opções</strong> dentro do sistema:</p>
+        <ol>
+          <li><strong>Usar o Conversor de Elemento (recomendado):</strong> clique no botão <strong>🔍</strong> ao lado do campo "Seletor CSS". Cole o <strong>outerHTML</strong> do elemento (copiado pelo Inspecionar → Copiar outerHTML) e clique em "Analisar". O sistema vai sugerir os melhores seletores, classificados por estabilidade. Basta clicar em "Usar".</li>
+          <li><strong>Copiar manualmente:</strong> clique com o botão direito no elemento → "Inspecionar" → no DevTools, clique com o direito no nó → "Copiar" → "Copiar seletor".</li>
+        </ol>
+        <div class="highlight-box-mini">
+          💡 <strong>Dica:</strong> Prefira seletores com <code>name</code>, <code>aria-label</code> ou classes específicas. Evite IDs estranhos como <code>#APjFqb</code> — eles podem mudar.
+        </div>
+      </div>
+    </details>
+
+    <!-- 3 -->
+    <details class="faq-item">
+      <summary><span class="emoji-big">🧱</span> O que significa cada bloco? (Navegar, Preencher, Clicar...)</summary>
+      <div class="answer">
+        <p>Cada bloco executa uma ação específica no navegador:</p>
+        <ul>
+          <li><strong>🌐 Navegar:</strong> Abre uma URL.</li>
+          <li><strong>✏️ Preencher:</strong> Digita um texto em um campo (<code>input</code> ou <code>textarea</code>).</li>
+          <li><strong>🖱️ Clicar:</strong> Clica em um botão, link ou qualquer elemento.</li>
+          <li><strong>⌨️ Pressionar tecla:</strong> Simula uma tecla (ex: Enter).</li>
+          <li><strong>👆 Pairar:</strong> Passa o mouse sobre um elemento (útil para menus).</li>
+          <li><strong>📋 Selecionar opção:</strong> Escolhe um item em um <code>&lt;select&gt;</code>.</li>
+          <li><strong>📊 Extrair dados:</strong> Pega um texto (ou atributo) da página e guarda numa variável.</li>
+          <li><strong>📸 Capturar tela:</strong> Tira um print da página.</li>
+          <li><strong>⏳ Esperar:</strong> Aguarda alguns segundos.</li>
+          <li><strong>🔍 Esperar elemento:</strong> Aguarda até que um elemento apareça na tela.</li>
+          <li><strong>📦 Definir variável:</strong> Cria ou altera um valor.</li>
+          <li><strong>📝 Registrar mensagem:</strong> Mostra algo no console (útil para testes).</li>
+          <li><strong>🔄 Repetir (loop):</strong> Executa um grupo de ações várias vezes.</li>
+          <li><strong>⚖️ Condição (compare):</strong> Compara valores e executa ações diferentes.</li>
+          <li><strong>🔔 Notificar:</strong> Envia uma mensagem para um webhook (ex: Discord, Slack).</li>
+        </ul>
+      </div>
+    </details>
+
+    <!-- 4 -->
+    <details class="faq-item">
+      <summary><span class="emoji-big">📄</span> Para que serve o JSON que é gerado?</summary>
+      <div class="answer">
+        <p>O JSON gerado é o <strong>script de automação</strong> que o Navyauto (ou outras ferramentas como Playwright) interpreta.</p>
+        <p>Depois de montar seu fluxo, clique em <strong>"Gerar JSON"</strong> e depois em <strong>"Baixar"</strong> para salvar o arquivo <code>.json</code> no seu computador. Esse arquivo pode ser carregado diretamente no sistema Navyauto para executar a automação.</p>
+        <div class="highlight-box-mini warn">
+          ⚠️ <strong>Importante:</strong> O JSON é apenas o "código" do seu fluxo. Para executá-lo, você precisa usar o <strong>Navyauto</strong> (a engine de automação) em conjunto.
+        </div>
+      </div>
+    </details>
+
+    <!-- 5 -->
+    <details class="faq-item">
+      <summary><span class="emoji-big">🔄</span> O que são blocos com "dentro" (Loop e Condição)?</summary>
+      <div class="answer">
+        <p>Blocos como <strong>"Repetir (loop)"</strong> e <strong>"Condição (compare)"</strong> são <strong>estruturas de controle</strong>. Eles têm um espaço interno onde você pode arrastar <strong>outros blocos</strong>.</p>
+        <ul>
+          <li><strong>🔄 Repetir:</strong> Os blocos dentro dele serão executados <code>N</code> vezes (definidas no campo "Vezes").</li>
+          <li><strong>⚖️ Condição:</strong> Ele tem dois caminhos: <strong>"on_true"</strong> (se a condição for verdadeira) e <strong>"on_false"</strong> (se for falsa). Arraste os blocos para o caminho correto.</li>
+        </ul>
+        <p>Para adicionar blocos dentro, simplesmente <strong>arraste</strong> da paleta para a área dentro deles.</p>
+      </div>
+    </details>
+
+    <!-- 6 -->
+    <details class="faq-item">
+      <summary><span class="emoji-big">🛑</span> Meu fluxo não funcionou. O que fazer?</summary>
+      <div class="answer">
+        <p>A maioria dos erros acontece por dois motivos:</p>
+        <ol>
+          <li><strong>Seletor errado ou frágil:</strong> O elemento pode ter mudado de nome ou não estar visível. Use o <strong>Conversor de Elemento (🔍)</strong> para gerar um seletor estável (recomendado) e tente novamente.</li>
+          <li><strong>A página não carregou completamente:</strong> Adicione um bloco <strong>"Esperar elemento"</strong> (com o seletor do elemento principal) antes de interagir com a página, para garantir que tudo está pronto.</li>
+        </ol>
+        <div class="highlight-box-mini">
+          💡 Dica: Use o bloco <strong>"Registrar mensagem"</strong> em pontos-chave para entender onde a automação está parando.
+        </div>
+      </div>
+    </details>
+
+    <!-- 7 -->
+    <details class="faq-item">
+      <summary><span class="emoji-big">💾</span> Posso salvar e compartilhar meu trabalho?</summary>
+      <div class="answer">
+        <p><strong>Sim!</strong> O sistema é 100% front-end (roda no seu navegador), então tudo fica apenas na sua máquina.</p>
+        <ul>
+          <li><strong>Salvar:</strong> Clique em <strong>"Baixar"</strong> na área de saída. Isso vai gerar um arquivo <code>.json</code> com seu fluxo.</li>
+          <li><strong>Compartilhar:</strong> Você pode enviar esse arquivo <code>.json</code> para outra pessoa, que pode abrir o mesmo editor e carregar (basta arrastar os blocos manualmente seguindo o JSON, ou usar a ferramenta para gerar novamente).</li>
+          <li><strong>Limpar:</strong> Use o botão <strong>"Limpar tudo"</strong> para recomeçar do zero.</li>
+        </ul>
+      </div>
+    </details>
+
+    <!-- 8 -->
+    <details class="faq-item">
+      <summary><span class="emoji-big">🖥️</span> Preciso instalar alguma coisa para usar?</summary>
+      <div class="answer">
+        <p><strong>Não!</strong> O Navyauto Blocks é um único arquivo <strong>HTML</strong> que roda diretamente no seu navegador (Chrome, Edge, Firefox, etc.).</p>
+        <p>Basta baixar o arquivo <code>blockgenerator.html</code> e abrir com duplo clique. Não precisa de servidor, internet (depois de carregar) ou instalação.</p>
+        <div class="highlight-box-mini">
+          ✅ <strong>Pronto para usar:</strong> Se você está vendo esta página, já pode abrir o editor e começar a montar seus fluxos.
+        </div>
+      </div>
+    </details>
+
+    <!-- 9 -->
+    <details class="faq-item">
+      <summary><span class="emoji-big">🔧</span> Como faço para testar se o seletor está certo?</summary>
+      <div class="answer">
+        <p>Existem duas formas práticas:</p>
+        <ol>
+          <li><strong>Usando o campo "Teste seu seletor" no Manual:</strong> Digite o seletor e veja a validação simulada.</li>
+          <li><strong>No navegador (Console):</strong> Pressione <kbd>F12</kbd> para abrir o DevTools, vá na aba "Console" e digite <br />
+            <code>document.querySelector('seu_selector_aqui')</code> <br />
+            Se retornar o elemento (ex: <code>&lt;input&gt;</code>), está correto. Se retornar <code>null</code>, está errado.
+          </li>
+        </ol>
+      </div>
+    </details>
+
+    <!-- 10 -->
+    <details class="faq-item">
+      <summary><span class="emoji-big">🎯</span> O que significa "Recomendado", "Alternativo" e "Evitar" no conversor?</summary>
+      <div class="answer">
+        <p>O Conversor de Elemento classifica os seletores com base na <strong>estabilidade</strong> (chance de continuarem funcionando no futuro):</p>
+        <ul>
+          <li><strong>✅ Recomendado:</strong> Atributos como <code>name</code>, <code>aria-label</code> ou IDs estáveis. Dificilmente mudam.</li>
+          <li><strong>👍 Alternativo:</strong> Classes específicas ou combinações. Funcionam, mas podem ser menos únicos.</li>
+          <li><strong>⚠️ Evitar:</strong> IDs gerados dinamicamente (ex: <code>#APjFqb</code>) ou caminhos longos. Mudam com frequência ou são frágeis.</li>
+        </ul>
+        <p><strong>Regra de ouro:</strong> Sempre escolha um seletor da categoria <strong>"Recomendado"</strong> quando possível.</p>
+      </div>
+    </details>
+  </section>
+
+  <!-- Rodapé com links -->
+  <footer class="footer">
+    🧩 <strong>Navyauto Blocks</strong> · <a href="#" onclick="alert('Abra o arquivo blockgenerator.html no mesmo diretório para começar!'); return false;">Abrir Editor</a> · <a href="#" onclick="alert('O manual está disponível como uma página separada para consulta rápida.'); return false;">Ver Manual</a><br />
+    Dúvidas? Consulte o <strong>Conversor de Elemento</strong> (🔍) dentro do editor!
+  </footer>
+</div>
+</body>
+</html>

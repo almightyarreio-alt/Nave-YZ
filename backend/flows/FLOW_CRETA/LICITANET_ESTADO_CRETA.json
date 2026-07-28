@@ -1,0 +1,117 @@
+{
+  "name": "LICITANET_ESTADO_CRETA.json",
+  "steps": [
+    {
+      "action": "navigate",
+      "url": "https://portal.licitanet.com.br/"
+    },
+    {
+      "action": "wait",
+      "seconds": 2
+    },
+    {
+      "action": "wait_for_selector",
+      "selector": "[type='submit']",
+      "timeout": 15000,
+      "var": "ESTA_LOGIN"
+    },
+    {
+      "action": "compare",
+      "var": "ESTA_LOGIN",
+      "operator": "==",
+      "value": "true",
+      "on_true": [
+        {
+          "action": "flow",
+          "flow": "LICITANET_LOGIN_CRETA.json"
+        },
+        {
+          "action": "wait",
+          "seconds": 2
+        }
+      ]
+    },
+    {
+      "action": "wait_for_selector",
+      "selector": "[data-slot='card-content']",
+      "timeout": 15000,
+      "var": "ESTA_FORNECEDOR"
+    },
+    {
+      "action": "compare",
+      "var": "ESTA_FORNECEDOR",
+      "operator": "==",
+      "value": "true",
+      "on_true": [
+        {
+          "action": "flow",
+          "flow": "LICITANET_FORNECEDOR.json"
+        },
+        {
+          "action": "wait",
+          "seconds": 2
+        }
+      ]
+    },
+    {
+      "action": "wait_for_selector",
+      "selector": "#nav-item-processos > a",
+      "timeout": 15000,
+      "var": "ESTA_DISPUTA"
+    },
+    {
+      "action": "compare",
+      "var": "ESTA_DISPUTA",
+      "value": "true",
+      "on_true": [
+        {
+          "action": "flow",
+          "flow": "LICITANET_DISPUTA_CRETA.json"
+        }
+      ]
+    },
+    {
+      "action": "wait_for_selector",
+      "selector": "body > div.sweet-alert.visible.showSweetAlert",
+      "timeout": 15000,
+      "var": "ESTA_SESSAO"
+    },
+    {
+      "action": "compare",
+      "var": "ESTA_SESSAO",
+      "operator": "==",
+      "value": "true",
+      "on_true": [
+        {
+          "action": "flow",
+          "flow": "LICITANET_ESTADO_CRETA.json"
+        },
+        {
+          "action": "wait",
+          "seconds": 2
+        }
+      ]
+    },
+    {
+      "action": "wait_for_selector",
+      "selector": "body > div.sweet-alert.showSweetAlert.visible",
+      "timeout": 15000,
+      "var": "ESTA_VISITANTE"
+    },
+    {
+      "action": "compare",
+      "var": "ESTA_VISITANTE",
+      "value": "true",
+      "on_true": [
+        {
+          "action": "flow",
+          "flow": "LICITANET_ESTADO_CRETA.json"
+        },
+        {
+          "action": "wait",
+          "seconds": 2
+        }
+      ]
+    }
+  ]
+}

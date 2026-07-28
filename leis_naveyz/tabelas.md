@@ -1,2 +1,0 @@
-leis -> documentações
-portas -> APIs

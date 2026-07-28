@@ -1,0 +1,8 @@
+{
+  "name": "Meu Fluxo",
+  "steps": [{
+            "action":"monitor",
+            "selector":"body"
+        }]
+  
+}

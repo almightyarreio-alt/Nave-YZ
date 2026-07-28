@@ -1,0 +1,23 @@
+{
+  "name": "LICITANET_LOGIN_006-2026",
+  "steps": [
+    {
+      "action": "navigate",
+      "url": "https://licita-sso.licitanet.com.br/login"
+    },
+    {
+      "action": "fill",
+      "selector": "[placeholder='digite seu usuário']",
+      "value": "{LICITANET_CRETA_USER}"
+    },
+    {
+      "action": "fill",
+      "selector": "[type='password']",
+      "value": "{LICITANET_CRETA_PASS}"
+    },
+    {
+      "action": "click",
+      "selector": "[type='submit']"
+    }
+  ]
+}

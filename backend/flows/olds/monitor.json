@@ -1,0 +1,40 @@
+{
+  "name": "Meu Fluxo",
+  "steps": [
+    {
+      "action": "monitor",
+      "selector": "#root > div.flex.h-screen.overflow-hidden.bg-background > div.flex-1.flex.flex-col.min-w-0.overflow-hidden > main > div > div > div > div.w-72.border-r.border-border.flex.flex-col.shrink-0 > div.flex-1.overflow-y-auto",
+      "attribute": "innerHTML",
+      "interval": 2,
+      "timeout": 10,
+      "save_snapshots": true,
+      "max_history": 50,
+      "name": "Monitor do Chat",
+      "on_change": [
+        {
+          "action": "log",
+          "message": "O chat foi alterado!"
+        },
+        {
+              "action": "notify",
+              "webhook": "http://localhost:5678/notify",
+              "payload": "CHATMUDOU"
+            },
+        {
+          "action": "extract",
+          "selector": "#root > div.flex.h-screen.overflow-hidden.bg-background > div.flex-1.flex.flex-col.min-w-0.overflow-hidden > main > div > div > div > div.w-72.border-r.border-border.flex.flex-col.shrink-0 > div.flex-1.overflow-y-auto",
+          "attribute": "textContent",
+          "save_as": "ultimo_chat"
+        }
+      ],
+      "on_not_found": [
+        
+        {
+              "action": "notify",
+              "webhook": "http://localhost:5678/notify",
+              "payload": "CHAT NÃO ENCONTRADO"
+            }
+      ]
+    }
+  ]
+}

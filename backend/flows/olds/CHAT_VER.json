@@ -1,0 +1,82 @@
+{
+  "name": "CHAT_VER",
+  "steps": [
+    {
+      "action": "navigate",
+      "url": "https://licitacao-app.base44.app/chat"
+    },
+    {
+      "action": "wait_for_selector",
+      "selector": ".h-full",
+      "timeout": 10000,
+      "var": "chatinicial"
+    },
+    {
+      "action": "notify",
+      "webhook": "http://localhost:5678/notify",
+      "payload": "Iniciando comparação..."
+    },
+    {
+      "action": "compare",
+      "var": "chatinicial",
+      "value": "false",
+      "on_true": [
+        {
+          "action": "notify",
+          "webhook": "http://localhost:5678/notify",
+          "payload": "Erro na comparação... Fazendo login..."
+        },
+        {
+          "action": "flow",
+          "flow": "LOGIN_CRETA"
+        }
+      ],
+      "on_false": [
+        {
+          "action": "extract",
+          "selector": ".h-full",
+          "attribute": "innerHTML",
+          "variable": "chatinicial"
+        },
+        {
+          "action": "notify",
+          "webhook": "http://localhost:5678/notify",
+          "payload": "Variável registrada"
+        },
+        {
+          "action": "wait",
+          "seconds": 60
+        },
+        {
+          "action": "extract",
+          "selector": ".h-full",
+          "attribute": "innerHTML",
+          "variable": "chats"
+        },
+        {
+          "action": "notify",
+          "webhook": "http://localhost:5678/notify",
+          "payload": "iniciando a comparação do segundo chat"
+        },
+        {
+          "action": "compare",
+          "var": "chatinicial",
+          "value": "{chats}",
+          "on_true": [
+            {
+              "action": "flow",
+              "flow": "CHAT_VER"
+            }
+          ],
+          "on_false": [
+            {
+              "action": "notify",
+              "webhook": "http://localhost:5678/notify",
+              "payload": "CHATMUDOU"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "5644546",
+  "steps": [
+    {
+      "action": "loop",
+      "times": 5,
+      "interval": 2,
+      "steps": [
+        {
+          "action": "notify",
+          "webhook": "http://localhost:5678/notify",
+          "payload": "ola"
+        }
+      ]
+    }
+  ]
+}

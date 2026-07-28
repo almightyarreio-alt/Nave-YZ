@@ -1,0 +1,60 @@
+{
+  "name": "Meu Fluxo",
+  "steps": [
+    {
+      "action": "navigate",
+      "url": "https://licitacao-app.base44.app/chat"
+    },
+    {
+      "action": "wait_for_selector",
+      "selector": ".h-full",
+      "timeout": 10000,
+      "var": "x"
+    },
+    {
+      "action": "compare",
+      "var": "x",
+      "value": "true",
+      "on_true": [
+        {
+          "action": "extract",
+          "selector": ".h-full",
+          "attribute": "innerHTML",
+          "variable": "chat1"
+        },
+        {
+          "action": "loop",
+          "times": 10,
+          "interval": 10,
+          "steps": [
+            {
+              "action": "extract",
+              "selector": ".h-full",
+              "attribute": "innerHTML",
+              "variable": "chat2"
+            },
+            {
+              "action": "compare",
+              "var": "chat1",
+              "value": "{chat2}",
+              "on_true": [
+                {
+                  "action": "notify",
+                  "webhook": "http://localhost:5678/notify",
+                  "payload": "Nada mudou..."
+                }
+              ],
+              "on_false": [
+                {
+                  "action": "notify",
+                  "webhook": "http://localhost:5678/notify",
+                  "payload": "chat  mudado!"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

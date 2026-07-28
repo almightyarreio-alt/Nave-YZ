@@ -1,0 +1,14 @@
+{"name": "LICITACAO",
+  "steps": [
+    {
+      "action": "wait_for_selector",
+      "selector": "#fecharModalApp",
+      "timeout": 15000,
+      "var": "FECHARPOPUP"
+    },
+    {
+    "action":"click",
+    "selector":"#fecharModalApp"
+}
+  ]
+}	

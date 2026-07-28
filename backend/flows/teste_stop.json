@@ -1,0 +1,33 @@
+{
+  "name": "Meu Fluxo",
+  "steps": [
+    {
+      "action": "navigate",
+      "url": "https://build.nvidia.com/models?filters=nimType%3Anim_type_preview&label=coding"
+    },
+    {
+        "action": "flow",
+        "flow": "123.json"
+    },
+    {
+      "action": "wait",
+      "seconds": 5
+    },
+    {
+      "action": "navigate",
+      "url": "http://127.0.0.1:8000/"
+    },
+    {
+      "action": "stop_flow",
+      "reason": "Fluxo interrompido manualmente."
+    },
+    {
+      "action": "wait",
+      "seconds": 5
+    },
+    {
+      "action": "navigate",
+      "url": "https://grok.com/"
+    }
+  ]
+}

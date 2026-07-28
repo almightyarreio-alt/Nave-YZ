@@ -1,0 +1,15 @@
+{
+  "name": "Meu Fluxo",
+  "steps": [
+    {
+      "action": "extract",
+      "selector": "head > title",
+      "attribute": "src",
+      "variable": "titulo"
+    },
+    {
+      "action": "log",
+      "message": "{titulo}"
+    }
+  ]
+}

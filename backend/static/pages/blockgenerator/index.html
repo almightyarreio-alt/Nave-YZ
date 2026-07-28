@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Navyauto Blocks – Automação Visual</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="header">
+    <h1>🧩 Navyauto <span>Blocks</span></h1>
+    <span class="sub">Automação visual · Arraste e monte seu fluxo</span>
+  </header>
+
+  <div class="app">
+    <div class="palette" id="palette">
+      <h2>📦 Blocos</h2>
+      <div id="paletteContainer"></div>
+      <div style="margin-top: auto; font-size:0.7rem; color:#94a3b8; padding:0.5rem; text-align:center; border-top:1px solid #e2e8f0;">
+        Arraste para a área de montagem
+      </div>
+    </div>
+
+    <div class="workspace" id="workspace">
+      <div class="workspace-placeholder" id="placeholder">
+        🚀 <strong>Arraste blocos</strong> da paleta para cá<br />
+        Monte seu fluxo de automação passo a passo
+      </div>
+      <div id="blocksContainer"></div>
+    </div>
+  </div>
+
+  <div class="output-panel">
+    <div class="output-header">
+      <h3>📄 JSON gerado</h3>
+      <div class="output-actions">
+        <button id="btnGenerate">🔁 Gerar JSON</button>
+        <button id="btnSaveFlow" class="secondary">💾 Salvar Fluxo</button>
+        <button id="btnLoadFlow" class="secondary">📂 Carregar Fluxo</button>
+        <button id="btnCopy" class="secondary">📋 Copiar</button>
+        <button id="btnDownload" class="secondary">💾 Baixar</button>
+        <button id="btnClear" class="secondary">🗑️ Limpar tudo</button>
+      </div>
+    </div>
+    <textarea id="jsonOutput" readonly placeholder="Clique em 'Gerar JSON' para ver o resultado..."></textarea>
+  </div>
+
+  <!-- MODAL DO CONVERSOR -->
+  <div class="modal-overlay" id="selectorModal">
+    <div class="modal">
+      <button class="close-btn" id="modalClose">✕</button>
+      <h3>🔍 Conversor de Elemento → Seletor</h3>
+      <p>Cole o <strong>HTML completo</strong> (outerHTML) do elemento que você quer automatizar. O sistema vai analisar e sugerir os melhores seletores CSS.</p>
+
+      <div class="step-guide">
+        <strong>📌 Como obter o outerHTML:</strong>
+        <ol>
+          <li>Clique com o botão direito no elemento → <strong>Inspecionar</strong></li>
+          <li>No DevTools, clique com o botão direito no nó destacado → <strong>Copiar → Copiar outerHTML</strong></li>
+          <li>Cole o conteúdo abaixo e clique em <strong>"Analisar"</strong></li>
+        </ol>
+        <div style="margin-top:0.4rem; font-size:0.8rem; color:#64748b;">
+          💡 Exemplo: <code>&lt;input type="text" name="q" id="APjFqb" class="gLFyf"&gt;</code>
+        </div>
+      </div>
+
+      <textarea id="htmlInput" placeholder="Cole aqui o outerHTML do elemento..."></textarea>
+      <div class="action-row">
+        <button id="btnAnalyze">🔎 Analisar</button>
+        <button id="btnClearInput" class="secondary">Limpar</button>
+        <button id="btnExample" class="secondary">📋 Colar exemplo</button>
+      </div>
+
+      <div class="results-area" id="resultsArea">
+        <h4 style="margin-bottom:0.5rem;">📋 Seletores sugeridos</h4>
+        <div id="resultsList"></div>
+        <p style="font-size:0.8rem; color:#94a3b8; margin-top:0.5rem;">
+          ✅ Recomendado · 👍 Alternativo · ⚠️ Evitar (pode quebrar)
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="js/script.js"></script>
+</body>
+</html>

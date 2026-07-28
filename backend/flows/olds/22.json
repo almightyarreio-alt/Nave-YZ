@@ -1,0 +1,22 @@
+{
+  "name": "22",
+  "steps": [
+    {
+      "action": "navigate",
+      "url": "1"
+    },
+    {
+      "action": "fill",
+      "selector": "1",
+      "value": "2"
+    },
+    {
+      "action": "press",
+      "selector": "1"
+    },
+    {
+      "action": "click",
+      "selector": "1"
+    }
+  ]
+}

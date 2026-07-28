@@ -1,0 +1,13 @@
+{
+  "name": "ola",
+  "steps": [
+    {
+      "action": "notify",
+      "webhook": "http://127.0.0.1:8000/api/webhooks/incoming",
+      "payload": {"tipo": "info",
+      "titulo": "Webhook Recebido",
+      "mensagem": "Chat não encontrado!",
+      "origem": "frontend"}
+    }
+  ]
+}

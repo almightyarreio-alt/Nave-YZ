@@ -1,0 +1,807 @@
+{
+    "functions": [
+        {
+            "name": ") categories[",
+            "line": 244
+        },
+        {
+            "name": "     if (b.c",
+            "line": 289
+        },
+        {
+            "name": "ter(b => !isC",
+            "line": 300
+        },
+        {
+            "name": "blockId) {\n  fo",
+            "line": 304
+        },
+        {
+            "name": " {\n        co",
+            "line": 308
+        },
+        {
+            "name": " getParentIn",
+            "line": 327
+        },
+        {
+            "name": "lotChildren(pa",
+            "line": 337
+        },
+        {
+            "name": "en) return [];\n",
+            "line": 344
+        },
+        {
+            "name": "d ? getPare",
+            "line": 353
+        },
+        {
+            "name": "nfo.parentId === nu",
+            "line": 383
+        },
+        {
+            "name": "x = Math.min(Ma",
+            "line": 398
+        },
+        {
+            "name": "return;\n  if (!paren",
+            "line": 406
+        },
+        {
+            "name": "t block = {\n    id: n",
+            "line": 424
+        },
+        {
+            "name": "nderBloc",
+            "line": 439
+        },
+        {
+            "name": "onst slot i",
+            "line": 448
+        },
+        {
+            "name": "tBlocks.leng",
+            "line": 463
+        },
+        {
+            "name": "ument.createElemen",
+            "line": 477
+        },
+        {
+            "name": "ft + 'px';\n  ",
+            "line": 628
+        },
+        {
+            "name": "(rect);\n}\n\nfunction",
+            "line": 636
+        },
+        {
+            "name": "or(rect);\n}\n\nfunct",
+            "line": 642
+        },
+        {
+            "name": "2) + 'px';\n  showIndica",
+            "line": 648
+        },
+        {
+            "name": "slot.drag-ove",
+            "line": 654
+        },
+        {
+            "name": ";\n}\n\nfunction clean",
+            "line": 658
+        },
+        {
+            "name": "calcula ond",
+            "line": 664
+        },
+        {
+            "name": ".querySelector",
+            "line": 676
+        },
+        {
+            "name": "');\n  if (",
+            "line": 807
+        },
+        {
+            "name": " name: \"Meu ",
+            "line": 857
+        },
+        {
+            "name": "a.steps) ? flowDa",
+            "line": 867
+        },
+        {
+            "name": "f) return null;\n\n  ",
+            "line": 876
+        },
+        {
+            "name": " => {\n   ",
+            "line": 911
+        },
+        {
+            "name": "Modal() {",
+            "line": 1072
+        },
+        {
+            "name": ".target ==",
+            "line": 1080
+        },
+        {
+            "name": "parseFromSt",
+            "line": 1107
+        }
+    ],
+    "variables": [
+        {
+            "name": "OCK_DEFS =",
+            "line": 4
+        },
+        {
+            "name": "'works",
+            "line": 218
+        },
+        {
+            "name": "st blo",
+            "line": 219
+        },
+        {
+            "name": "er = document.getEl",
+            "line": 220
+        },
+        {
+            "name": "sContaine",
+            "line": 222
+        },
+        {
+            "name": "d('placeholder'",
+            "line": 223
+        },
+        {
+            "name": "paletteCont",
+            "line": 224
+        },
+        {
+            "name": "Id('jsonOutput')",
+            "line": 225
+        },
+        {
+            "name": "eFlow');\nc",
+            "line": 226
+        },
+        {
+            "name": "adFlow');\n\n",
+            "line": 228
+        },
+        {
+            "name": "lementById(",
+            "line": 229
+        },
+        {
+            "name": "');\nc",
+            "line": 232
+        },
+        {
+            "name": "');\nconst ",
+            "line": 233
+        },
+        {
+            "name": "');\nconst",
+            "line": 234
+        },
+        {
+            "name": "earInput')",
+            "line": 235
+        },
+        {
+            "name": "nExample');\nc",
+            "line": 236
+        },
+        {
+            "name": "Area');\nco",
+            "line": 237
+        },
+        {
+            "name": "tsList');\n\n",
+            "line": 238
+        },
+        {
+            "name": "===========",
+            "line": 239
+        },
+        {
+            "name": " = [];\n   ",
+            "line": 245
+        },
+        {
+            "name": "teElem",
+            "line": 253
+        },
+        {
+            "name": ";\n   ",
+            "line": 255
+        },
+        {
+            "name": " e",
+            "line": 261
+        },
+        {
+            "name": "ame: ",
+            "line": 312
+        },
+        {
+            "name": " { pare",
+            "line": 319
+        },
+        {
+            "name": "dex: root",
+            "line": 320
+        },
+        {
+            "name": "parentId =",
+            "line": 329
+        },
+        {
+            "name": "me] ||",
+            "line": 345
+        },
+        {
+            "name": " : null;\n ",
+            "line": 354
+        },
+        {
+            "name": ".parentId ",
+            "line": 355
+        },
+        {
+            "name": "onfig.slotName",
+            "line": 356
+        },
+        {
+            "name": "') {\n    targe",
+            "line": 357
+        },
+        {
+            "name": "gth;\n  } el",
+            "line": 359
+        },
+        {
+            "name": "Ids = getR",
+            "line": 384
+        },
+        {
+            "name": ".id));\n",
+            "line": 387
+        },
+        {
+            "name": "ean).concat(",
+            "line": 388
+        },
+        {
+            "name": "me]) r",
+            "line": 393
+        },
+        {
+            "name": "ength);",
+            "line": 399
+        },
+        {
+            "name": "cks = blo",
+            "line": 400
+        },
+        {
+            "name": "n).concat(ne",
+            "line": 402
+        },
+        {
+            "name": ".child",
+            "line": 407
+        },
+        {
+            "name": "].splice(cur",
+            "line": 412
+        },
+        {
+            "name": "ndex, 0, ",
+            "line": 417
+        },
+        {
+            "name": ": a",
+            "line": 425
+        },
+        {
+            "name": "arams",
+            "line": 427
+        },
+        {
+            "name": "tainer.s",
+            "line": 440
+        },
+        {
+            "name": "ock';\n    ",
+            "line": 465
+        },
+        {
+            "name": "cum",
+            "line": 478
+        },
+        {
+            "name": "\n  ",
+            "line": 481
+        },
+        {
+            "name": ">${def",
+            "line": 486
+        },
+        {
+            "name": "st label ",
+            "line": 495
+        },
+        {
+            "name": "pe ==",
+            "line": 498
+        },
+        {
+            "name": "ment(",
+            "line": 499
+        },
+        {
+            "name": "=> {\n",
+            "line": 500
+        },
+        {
+            "name": "= opt",
+            "line": 504
+        },
+        {
+            "name": "    hel",
+            "line": 524
+        },
+        {
+            "name": "Btn.title",
+            "line": 546
+        },
+        {
+            "name": "|| ['steps'",
+            "line": 557
+        },
+        {
+            "name": "    s",
+            "line": 559
+        },
+        {
+            "name": "lotDiv.",
+            "line": 561
+        },
+        {
+            "name": "lotDi",
+            "line": 566
+        },
+        {
+            "name": "t hint =",
+            "line": 574
+        },
+        {
+            "name": "dent",
+            "line": 577
+        },
+        {
+            "name": "lock, true",
+            "line": 584
+        },
+        {
+            "name": "lotName, ",
+            "line": 620
+        },
+        {
+            "name": "low)\nconst dropIn",
+            "line": 621
+        },
+        {
+            "name": "unction showI",
+            "line": 624
+        },
+        {
+            "name": " = w",
+            "line": 629
+        },
+        {
+            "name": ".add(",
+            "line": 630
+        },
+        {
+            "name": "fter",
+            "line": 637
+        },
+        {
+            "name": "orIn",
+            "line": 643
+        },
+        {
+            "name": "ion ",
+            "line": 649
+        },
+        {
+            "name": "Rect();\n  ",
+            "line": 680
+        },
+        {
+            "name": "   s",
+            "line": 682
+        },
+        {
+            "name": ";\n\n  for ",
+            "line": 696
+        },
+        {
+            "name": "rastado",
+            "line": 697
+        },
+        {
+            "name": "ate?.blockI",
+            "line": 698
+        },
+        {
+            "name": ".dataset.i",
+            "line": 699
+        },
+        {
+            "name": "ht &",
+            "line": 707
+        },
+        {
+            "name": "dingC",
+            "line": 712
+        },
+        {
+            "name": "ouseY <=",
+            "line": 714
+        },
+        {
+            "name": "    if (dra",
+            "line": 718
+        },
+        {
+            "name": "ontinue;\n ",
+            "line": 719
+        },
+        {
+            "name": "top + chi",
+            "line": 722
+        },
+        {
+            "name": "orB",
+            "line": 724
+        },
+        {
+            "name": "   ",
+            "line": 725
+        },
+        {
+            "name": " getPar",
+            "line": 728
+        },
+        {
+            "name": "'be",
+            "line": 754
+        },
+        {
+            "name": "els",
+            "line": 755
+        },
+        {
+            "name": "     pa",
+            "line": 756
+        },
+        {
+            "name": "lockEl;\n ",
+            "line": 770
+        },
+        {
+            "name": "efor",
+            "line": 771
+        },
+        {
+            "name": "lockId)",
+            "line": 781
+        },
+        {
+            "name": "showIndica",
+            "line": 783
+        },
+        {
+            "name": "rtsWit",
+            "line": 809
+        },
+        {
+            "name": ";\n    i",
+            "line": 813
+        },
+        {
+            "name": "de mover",
+            "line": 817
+        },
+        {
+            "name": "ilho do ",
+            "line": 821
+        },
+        {
+            "name": "rkspace ",
+            "line": 828
+        },
+        {
+            "name": "teps: step",
+            "line": 858
+        },
+        {
+            "name": "nctio",
+            "line": 859
+        },
+        {
+            "name": " 'ob",
+            "line": 860
+        },
+        {
+            "name": "!step",
+            "line": 872
+        },
+        {
+            "name": ".ke",
+            "line": 878
+        },
+        {
+            "name": " => p",
+            "line": 881
+        },
+        {
+            "name": "slotN",
+            "line": 891
+        },
+        {
+            "name": "    });\n  ",
+            "line": 896
+        },
+        {
+            "name": ".pa",
+            "line": 912
+        },
+        {
+            "name": "= St",
+            "line": 915
+        },
+        {
+            "name": " 'n",
+            "line": 917
+        },
+        {
+            "name": "trVal;",
+            "line": 919
+        },
+        {
+            "name": "hildS",
+            "line": 929
+        },
+        {
+            "name": "=== id);",
+            "line": 931
+        },
+        {
+            "name": "> s !== nu",
+            "line": 933
+        },
+        {
+            "name": "{\n        ",
+            "line": 934
+        },
+        {
+            "name": "k', ",
+            "line": 951
+        },
+        {
+            "name": "'/ap",
+            "line": 963
+        },
+        {
+            "name": "os existent",
+            "line": 965
+        },
+        {
+            "name": " const fileN",
+            "line": 969
+        },
+        {
+            "name": "vo ${fileName",
+            "line": 971
+        },
+        {
+            "name": "     ret",
+            "line": 972
+        },
+        {
+            "name": "Content",
+            "line": 977
+        },
+        {
+            "name": "k) {\n   ",
+            "line": 981
+        },
+        {
+            "name": "vo em",
+            "line": 987
+        },
+        {
+            "name": " {\n ",
+            "line": 990
+        },
+        {
+            "name": "s) || fl",
+            "line": 999
+        },
+        {
+            "name": "\n    cons",
+            "line": 1001
+        },
+        {
+            "name": "udes(san",
+            "line": 1007
+        },
+        {
+            "name": "    : nul",
+            "line": 1009
+        },
+        {
+            "name": " alert('",
+            "line": 1010
+        },
+        {
+            "name": " Error(error",
+            "line": 1021
+        },
+        {
+            "name": "dFlow",
+            "line": 1023
+        },
+        {
+            "name": " (err) {",
+            "line": 1026
+        },
+        {
+            "name": "luxo",
+            "line": 1051
+        },
+        {
+            "name": "t.b",
+            "line": 1052
+        },
+        {
+            "name": " ",
+            "line": 1053
+        },
+        {
+            "name": "xt/",
+            "line": 1108
+        },
+        {
+            "name": " co",
+            "line": 1114
+        },
+        {
+            "name": "nu",
+            "line": 1122
+        },
+        {
+            "name": " of",
+            "line": 1128
+        },
+        {
+            "name": ".n",
+            "line": 1129
+        },
+        {
+            "name": "const c",
+            "line": 1130
+        },
+        {
+            "name": " 'placehol",
+            "line": 1131
+        },
+        {
+            "name": "stability:",
+            "line": 1136
+        },
+        {
+            "name": "eason: 'Mui",
+            "line": 1137
+        },
+        {
+            "name": ".' : 'ID ",
+            "line": 1149
+        },
+        {
+            "name": "push({\n  ",
+            "line": 1150
+        },
+        {
+            "name": "   sta",
+            "line": 1151
+        },
+        {
+            "name": "d';\n   ",
+            "line": 1163
+        },
+        {
+            "name": "ates.push",
+            "line": 1165
+        },
+        {
+            "name": "\n     ",
+            "line": 1166
+        },
+        {
+            "name": "l.replace(",
+            "line": 1177
+        },
+        {
+            "name": "ty:",
+            "line": 1180
+        },
+        {
+            "name": "`Atribu",
+            "line": 1181
+        },
+        {
+            "name": "ributo ",
+            "line": 1194
+        },
+        {
+            "name": "     reas",
+            "line": 1206
+        },
+        {
+            "name": "n: ",
+            "line": 1230
+        },
+        {
+            "name": "lter",
+            "line": 1241
+        },
+        {
+            "name": "\n  uni",
+            "line": 1242
+        },
+        {
+            "name": "- o",
+            "line": 1243
+        },
+        {
+            "name": "Nenhu",
+            "line": 1249
+        },
+        {
+            "name": "ern",
+            "line": 1257
+        },
+        {
+            "name": "Recomendad",
+            "line": 1260
+        },
+        {
+            "name": "tor}</span",
+            "line": 1262
+        },
+        {
+            "name": "l();\n   ",
+            "line": 1276
+        },
+        {
+            "name": "rams: { se",
+            "line": 1296
+        },
+        {
+            "name": "egado",
+            "line": 1304
+        }
+    ],
+    "classes": []
+}

@@ -1,0 +1,17 @@
+{
+  "name": "testeo",
+  "steps": [
+    {
+      "action": "flow",
+      "flow": "ola"
+    },
+    {
+      "action": "wait",
+      "seconds": 5
+    },
+    {
+      "action": "flow",
+      "flow": "ola"
+    }
+  ]
+}

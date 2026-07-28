@@ -1,0 +1,48 @@
+{
+  "name": "Meu Fluxo",
+  "steps": [
+    {
+      "action": "extract",
+      "selector": ".flex-1",
+      "attribute": "innerHTML",
+      "variable": "x"
+    },
+    {
+      "action": "log",
+      "message": "{x}"
+    },
+    {
+      "action": "wait",
+      "seconds": 10
+    },
+    {
+      "action": "extract",
+      "selector": ".flex-1",
+      "attribute": "innerHTML",
+      "variable": "y"
+    },
+    {
+      "action": "log",
+      "message": "{y}"
+    },
+    {
+      "action": "compare",
+      "var": "x",
+      "value": "y",
+      "on_true": [
+        {
+          "action": "notify",
+          "webhook": "http://localhost:5678/notify",
+          "payload": "igual"
+        }
+      ],
+      "on_false": [
+        {
+          "action": "notify",
+          "webhook": "http://localhost:5678/notify",
+          "payload": "diferente"
+        }
+      ]
+    }
+  ]
+}

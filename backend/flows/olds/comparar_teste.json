@@ -1,0 +1,36 @@
+{
+  "name": "Meu Fluxo",
+  "steps": [
+    {
+      "action": "set",
+      "var": "x",
+      "value": "1"
+    },
+    {
+      "action": "set",
+      "var": "y",
+      "value": "2"
+    },
+    {
+      "action": "compare",
+      "var": "x",
+      "value": "{y}",
+      "on_true": [
+        {
+          "action": "log",
+          "message": "true"
+        }
+      ],
+      "on_false": [
+        {
+          "action": "log",
+          "message": "false"
+        }
+      ]
+    },
+    {
+      "action": "log",
+      "message": "FIM"
+    }
+  ]
+}

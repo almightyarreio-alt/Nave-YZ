@@ -1,5 +1,3 @@
-2026/07/24-15:45:51.062 3068 Creating DB C:\Users\User\Desktop\Projetos\Nave_YZ_VER1\Nave-YZ\backend\profiles\Perfil_Principal\Default\Local Storage\leveldb since it was missing.
-2026/07/24-15:45:51.124 3068 Reusing MANIFEST C:\Users\User\Desktop\Projetos\Nave_YZ_VER1\Nave-YZ\backend\profiles\Perfil_Principal\Default\Local Storage\leveldb/MANIFEST-000001
-2026/07/24-15:49:09.288 3068 Level-0 table #5: started
-2026/07/24-15:49:09.297 3068 Level-0 table #5: 19754 bytes OK
-2026/07/24-15:49:09.298 3068 Delete type=0 #3
+2026/07/28-10:16:01.301 313c Reusing MANIFEST C:\Users\User\Desktop\Projetos\Nave_YZ_VER1\Nave-YZ\backend\profiles\Perfil_Principal\Default\Local Storage\leveldb/MANIFEST-000001
+2026/07/28-10:16:01.341 313c Recovering log #7
+2026/07/28-10:16:01.347 313c Reusing old log C:\Users\User\Desktop\Projetos\Nave_YZ_VER1\Nave-YZ\backend\profiles\Perfil_Principal\Default\Local Storage\leveldb/000007.log 

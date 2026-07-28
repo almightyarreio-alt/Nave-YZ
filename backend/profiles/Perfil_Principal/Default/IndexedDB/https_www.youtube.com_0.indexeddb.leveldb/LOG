@@ -1,2 +1,3 @@
-2026/07/24-15:46:23.490 128c Creating DB C:\Users\User\Desktop\Projetos\Nave_YZ_VER1\Nave-YZ\backend\profiles\Perfil_Principal\Default\IndexedDB\https_www.youtube.com_0.indexeddb.leveldb since it was missing.
-2026/07/24-15:46:23.496 128c Reusing MANIFEST C:\Users\User\Desktop\Projetos\Nave_YZ_VER1\Nave-YZ\backend\profiles\Perfil_Principal\Default\IndexedDB\https_www.youtube.com_0.indexeddb.leveldb/MANIFEST-000001
+2026/07/28-09:57:56.666 b10 Reusing MANIFEST C:\Users\User\Desktop\Projetos\Nave_YZ_VER1\Nave-YZ\backend\profiles\Perfil_Principal\Default\IndexedDB\https_www.youtube.com_0.indexeddb.leveldb/MANIFEST-000001
+2026/07/28-09:57:56.667 b10 Recovering log #3
+2026/07/28-09:57:56.668 b10 Reusing old log C:\Users\User\Desktop\Projetos\Nave_YZ_VER1\Nave-YZ\backend\profiles\Perfil_Principal\Default\IndexedDB\https_www.youtube.com_0.indexeddb.leveldb/000003.log 

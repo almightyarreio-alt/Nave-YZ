@@ -1,0 +1,38 @@
+{
+  "name": "LICITANET_LOGIN_006-2026",
+  "steps": [
+    {
+      "action": "navigate",
+      "url": "https://licita-sso.licitanet.com.br/"
+    },
+    {
+      "action": "wait_for_selector",
+      "selector": "#app > div > main > section > div > article:nth-child(8) > div",
+      "timeout": 15000,
+      "var": "FORNECEDOR"
+    },
+    {
+      "action": "click",
+      "selector": "#app > div > main > section > div > article:nth-child(8) > div"
+    },
+    {
+      "action": "wait_for_selector",
+      "selector": "#fecharModalApp",
+      "timeout": 15000,
+      "var": "FECHARPOPUP"
+    },
+{
+"action":"click",
+"selector":"#fecharModalApp"
+}	
+,
+    {
+      "action": "navigate",
+      "url": "https://portal.licitanet.com.br/menu-processos"
+    },
+    {
+      "action": "navigate",
+      "url": "https://portal.licitanet.com.br/sala-disputa-concorrencia/187154"
+    }
+  ]
+}

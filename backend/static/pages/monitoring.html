@@ -1,0 +1,1368 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navyauto | Centro de Monitoramento</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest" defer></script>
+    <style>
+        :root {
+            --bg-base: #09090b; /* zinc-950 */
+            --bg-card: rgba(24, 24, 27, 0.7); /* zinc-900 with transparency */
+            --border-color: rgba(63, 63, 70, 0.4); /* zinc-700 */
+            --text-primary: #f4f4f5; /* zinc-100 */
+            --text-secondary: #a1a1aa; /* zinc-400 */
+            --text-muted: #52525b; /* zinc-600 */
+            --accent-cyan: #06b6d4; /* cyan-500 */
+            --accent-cyan-glow: rgba(6, 182, 212, 0.15);
+            --accent-emerald: #10b981; /* emerald-500 */
+            --accent-emerald-glow: rgba(16, 185, 129, 0.15);
+            --accent-amber: #f59e0b; /* amber-500 */
+            --accent-amber-glow: rgba(245, 158, 11, 0.15);
+            --accent-rose: #f43f5e; /* rose-500 */
+            --accent-rose-glow: rgba(244, 63, 94, 0.15);
+            --accent-violet: #8b5cf6; /* violet-500 */
+            --accent-violet-glow: rgba(139, 92, 246, 0.15);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-primary);
+            font-family: 'Outfit', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-col: column;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Header */
+        header {
+            border-b: 1px solid var(--border-color);
+            background-color: rgba(9, 9, 11, 0.8);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 40;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: justify;
+            justify-content: space-between;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-icon {
+            display: grid;
+            height: 2.25rem;
+            width: 2.25rem;
+            place-items: center;
+            border-radius: 0.5rem;
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            bg: var(--accent-cyan-glow);
+            background: var(--accent-cyan-glow);
+            color: var(--accent-cyan);
+        }
+
+        .logo-title h1 {
+            font-size: 0.875rem;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            color: #fff;
+        }
+
+        .logo-title p {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .btn-secondary {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+            padding: 0.4rem 0.8rem;
+            border-radius: 0.5rem;
+        }
+
+        .btn-secondary:hover {
+            color: var(--accent-cyan);
+            border-color: rgba(6, 182, 212, 0.3);
+            background-color: var(--accent-cyan-glow);
+        }
+
+        .status-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.5rem;
+            font-size: 0.75rem;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            background: var(--accent-emerald-glow);
+            color: var(--accent-emerald);
+        }
+
+        .status-indicator {
+            position: relative;
+            display: flex;
+            height: 0.5rem;
+            width: 0.5rem;
+        }
+
+        .status-ping {
+            position: absolute;
+            display: inline-flex;
+            height: 100%;
+            width: 100%;
+            border-radius: 9999px;
+            background-color: var(--accent-emerald);
+            opacity: 0.75;
+            animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+        }
+
+        .status-dot {
+            position: relative;
+            display: inline-flex;
+            border-radius: 9999px;
+            height: 0.5rem;
+            width: 0.5rem;
+            background-color: var(--accent-emerald);
+        }
+
+        @keyframes ping {
+            75%, 100% {
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
+
+        /* Main Content */
+        main {
+            flex: 1;
+            max-width: 1400px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .stat-card {
+            border: 1px solid var(--border-color);
+            background-color: var(--bg-card);
+            border-radius: 0.75rem;
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            backdrop-filter: blur(10px);
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(6, 182, 212, 0.25);
+        }
+
+        .stat-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-secondary);
+        }
+
+        .stat-icon {
+            font-size: 1.25rem;
+        }
+
+        .stat-value {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        /* Panel Table Section */
+        .panel {
+            border: 1px solid var(--border-color);
+            background-color: var(--bg-card);
+            border-radius: 0.75rem;
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .panel-header {
+            padding: 1.25rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: rgba(24, 24, 27, 0.4);
+        }
+
+        .panel-title h2 {
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #fff;
+        }
+
+        .panel-title p {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-top: 0.25rem;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            width: 100%;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.875rem;
+        }
+
+        th {
+            padding: 1rem 1.25rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+            color: var(--text-secondary);
+            border-bottom: 1px solid var(--border-color);
+            background-color: rgba(24, 24, 27, 0.6);
+        }
+
+        td {
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: middle;
+            color: var(--text-primary);
+        }
+
+        tr:hover td {
+            background-color: rgba(63, 63, 70, 0.15);
+        }
+
+        .monitor-name-col {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .monitor-name {
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .monitor-id {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.6875rem;
+            color: var(--text-secondary);
+        }
+
+        /* Badges */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.375rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .badge-running {
+            background-color: var(--accent-emerald-glow);
+            color: var(--accent-emerald);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            box-shadow: 0 0 8px rgba(16, 185, 129, 0.1);
+        }
+
+        .badge-paused {
+            background-color: var(--accent-amber-glow);
+            color: var(--accent-amber);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+        }
+
+        .badge-stopped {
+            background-color: rgba(113, 113, 122, 0.1);
+            color: #a1a1aa;
+            border: 1px solid rgba(113, 113, 122, 0.2);
+        }
+
+        .badge-error {
+            background-color: var(--accent-rose-glow);
+            color: var(--accent-rose);
+            border: 1px solid rgba(244, 63, 94, 0.2);
+            box-shadow: 0 0 8px rgba(244, 63, 94, 0.1);
+        }
+
+        .badge-not-found {
+            background-color: var(--accent-amber-glow);
+            color: var(--accent-amber);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            box-shadow: 0 0 8px rgba(245, 158, 11, 0.1);
+        }
+
+        .selector-box {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            background-color: rgba(9, 9, 11, 0.6);
+            padding: 0.2rem 0.4rem;
+            border-radius: 0.25rem;
+            border: 1px solid var(--border-color);
+            max-width: 200px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            display: inline-block;
+        }
+
+        .action-buttons {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 2rem;
+            width: 2rem;
+            border-radius: 0.375rem;
+            border: 1px solid var(--border-color);
+            background: transparent;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .btn-icon:hover {
+            color: #fff;
+            background-color: rgba(63, 63, 70, 0.3);
+            border-color: var(--text-secondary);
+        }
+
+        .btn-icon.play-btn:hover {
+            color: var(--accent-emerald);
+            background-color: var(--accent-emerald-glow);
+            border-color: rgba(16, 185, 129, 0.3);
+        }
+
+        .btn-icon.pause-btn:hover {
+            color: var(--accent-amber);
+            background-color: var(--accent-amber-glow);
+            border-color: rgba(245, 158, 11, 0.3);
+        }
+
+        .btn-icon.delete-btn:hover {
+            color: var(--accent-rose);
+            background-color: var(--accent-rose-glow);
+            border-color: rgba(244, 63, 94, 0.3);
+        }
+
+        /* Detail Modal Side Drawer */
+        .drawer-overlay {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 50;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .drawer-overlay.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .drawer {
+            position: fixed;
+            top: 0;
+            right: -600px;
+            bottom: 0;
+            width: 600px;
+            max-width: 100%;
+            background-color: #0c0c0e; /* slightly lighter dark base */
+            border-left: 1px solid var(--border-color);
+            z-index: 51;
+            display: flex;
+            flex-direction: column;
+            transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            color: var(--text-primary);
+        }
+
+        .drawer.open {
+            right: 0;
+        }
+
+        .drawer-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: rgba(24, 24, 27, 0.4);
+        }
+
+        .drawer-title h3 {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .drawer-close {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        .drawer-close:hover {
+            color: #fff;
+        }
+
+        .drawer-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .drawer-section {
+            border: 1px solid var(--border-color);
+            background-color: rgba(24, 24, 27, 0.3);
+            border-radius: 0.5rem;
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .drawer-section-title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--accent-cyan);
+            border-bottom: 1px solid rgba(63, 63, 70, 0.2);
+            padding-bottom: 0.5rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.75rem 1rem;
+            font-size: 0.8125rem;
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.15rem;
+        }
+
+        .info-label {
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+        }
+
+        .info-value {
+            color: #fff;
+            font-weight: 500;
+        }
+
+        /* Diff Render */
+        .diff-container {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            background-color: #040405;
+            border: 1px solid var(--border-color);
+            border-radius: 0.375rem;
+            padding: 0.75rem;
+            overflow-x: auto;
+            max-height: 250px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+        }
+
+        .diff-line-added {
+            color: var(--accent-emerald);
+            background-color: rgba(16, 185, 129, 0.08);
+        }
+
+        .diff-line-removed {
+            color: var(--accent-rose);
+            background-color: rgba(244, 63, 94, 0.08);
+        }
+
+        .diff-line-meta {
+            color: var(--accent-cyan);
+        }
+
+        /* Snapshots Gallery */
+        .snapshots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 0.75rem;
+        }
+
+        .snapshot-item {
+            border: 1px solid var(--border-color);
+            border-radius: 0.375rem;
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+            aspect-ratio: 16/10;
+            background-color: #000;
+        }
+
+        .snapshot-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.2s ease;
+        }
+
+        .snapshot-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .snapshot-time {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            font-size: 0.625rem;
+            background-color: rgba(0, 0, 0, 0.75);
+            color: #fff;
+            padding: 0.2rem;
+            text-align: center;
+        }
+
+        /* Timeline / History logs */
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 1.5rem;
+            border-left: 2px solid var(--border-color);
+            font-size: 0.8125rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -5px;
+            top: 2px;
+            height: 8px;
+            width: 8px;
+            border-radius: 50%;
+            background-color: var(--border-color);
+        }
+
+        .timeline-item.success::before {
+            background-color: var(--accent-emerald);
+            box-shadow: 0 0 6px var(--accent-emerald);
+        }
+
+        .timeline-item.error::before {
+            background-color: var(--accent-rose);
+            box-shadow: 0 0 6px var(--accent-rose);
+        }
+
+        .timeline-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .timeline-time {
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .timeline-status {
+            font-size: 0.6875rem;
+        }
+
+        .timeline-body {
+            color: var(--text-secondary);
+        }
+
+        .timeline-diff-trigger {
+            color: var(--accent-cyan);
+            cursor: pointer;
+            font-size: 0.75rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            margin-top: 0.25rem;
+        }
+
+        .timeline-diff-trigger:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        /* Empty state */
+        .empty-state {
+            padding: 3rem 2rem;
+            text-align: center;
+            color: var(--text-secondary);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .empty-state-icon {
+            font-size: 3rem;
+            color: var(--text-muted);
+        }
+
+        /* JSON Pre */
+        pre.json-pre {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            background-color: #040405;
+            padding: 0.75rem;
+            border-radius: 0.375rem;
+            overflow-x: auto;
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo-section">
+                <span class="logo-icon">
+                    <i data-lucide="activity" class="logo-svg"></i>
+                </span>
+                <div class="logo-title">
+                    <h1>CENTRO DE MONITORAMENTO</h1>
+                    <p>Navyauto Monitors Subsystem</p>
+                </div>
+            </div>
+
+            <div class="nav-links">
+                <a href="/" class="btn-secondary">
+                    <i data-lucide="layout-dashboard"></i>
+                    <span>Voltar ao Dashboard</span>
+                </a>
+                
+                <div class="status-badge">
+                    <span class="status-indicator">
+                        <span class="status-ping"></span>
+                        <span class="status-dot"></span>
+                    </span>
+                    <span>Painel Online (Auto-refresh 2s)</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        
+        <!-- Metrics -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-header">
+                    <span class="stat-label">Total de Monitores</span>
+                    <span class="stat-icon" style="color: var(--accent-violet);"><i data-lucide="list-todo"></i></span>
+                </div>
+                <div class="stat-value" id="statTotal">0</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-header">
+                    <span class="stat-label">Em Execução</span>
+                    <span class="stat-icon" style="color: var(--accent-emerald);"><i data-lucide="play-circle"></i></span>
+                </div>
+                <div class="stat-value" id="statRunning">0</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-header">
+                    <span class="stat-label">Pausados</span>
+                    <span class="stat-icon" style="color: var(--accent-amber);"><i data-lucide="pause-circle"></i></span>
+                </div>
+                <div class="stat-value" id="statPaused">0</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-header">
+                    <span class="stat-label">Com Erros</span>
+                    <span class="stat-icon" style="color: var(--accent-rose);"><i data-lucide="alert-triangle"></i></span>
+                </div>
+                <div class="stat-value" id="statErrors">0</div>
+            </div>
+        </div>
+
+        <!-- Panel Table -->
+        <section class="panel">
+            <div class="panel-header">
+                <div class="panel-title">
+                    <h2>Monitores Registrados</h2>
+                    <p>Controle do ciclo de vida e estado em tempo real</p>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <table id="monitorsTable">
+                    <thead>
+                        <tr>
+                            <th>Nome do Monitor</th>
+                            <th>Status</th>
+                            <th>Tipo</th>
+                            <th>Perfil / Página</th>
+                            <th>Seletor (Atributo)</th>
+                            <th>Intervalo</th>
+                            <th>Verificações</th>
+                            <th>Alterações</th>
+                            <th>Último Check</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="monitorsTableBody">
+                        <!-- Filled dynamically -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <div id="tableEmptyState" class="empty-state" style="display: none;">
+                <span class="empty-state-icon"><i data-lucide="eye-off"></i></span>
+                <p>Nenhum monitor registrado no momento.</p>
+                <span style="font-size: 0.75rem; color: var(--text-muted);">Execute um fluxo com o passo "monitor" para iniciar o rastreamento.</span>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Side Drawer Details -->
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+    <div class="drawer" id="detailDrawer">
+        <div class="drawer-header">
+            <div class="drawer-title">
+                <h3 id="drawerMonitorName">Detalhes do Monitor</h3>
+                <span class="monitor-id" id="drawerMonitorId" style="margin-top: 0.2rem; display: block;"></span>
+            </div>
+            <button class="drawer-close" id="drawerCloseBtn">&times;</button>
+        </div>
+
+        <div class="drawer-content">
+            
+            <!-- Informations -->
+            <div class="drawer-section">
+                <h4 class="drawer-section-title">Informações Gerais</h4>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Tipo</span>
+                        <span class="info-value" id="infoType">DOM</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Perfil Associado</span>
+                        <span class="info-value" id="infoProfile">Perfil Principal</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Page ID</span>
+                        <span class="info-value" id="infoPageId">-</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Frame ID</span>
+                        <span class="info-value" id="infoFrameId">Principal</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Intervalo de Verificação</span>
+                        <span class="info-value" id="infoInterval">10 segundos</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Timeout do Seletor</span>
+                        <span class="info-value" id="infoTimeout">30 segundos</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Criado Em</span>
+                        <span class="info-value" id="infoStartedAt">-</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Última Alteração</span>
+                        <span class="info-value" id="infoLastChange">-</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Value / Error / Context State -->
+            <div class="drawer-section">
+                <h4 class="drawer-section-title">Estado Atual</h4>
+                <div class="info-grid" style="grid-template-columns: 1fr;">
+                    <div class="info-item">
+                        <span class="info-label">Último Valor Lido</span>
+                        <span class="info-value" id="infoLastValue" style="font-family: 'JetBrains Mono', monospace; font-size: 0.8125rem; word-break: break-all; background: rgba(9,9,11,0.5); padding: 0.4rem; border-radius: 0.25rem; border: 1px solid var(--border-color);">-</span>
+                    </div>
+                    <div class="info-item" id="errorContainer" style="display: none;">
+                        <span class="info-label" style="color: var(--accent-rose);">Última Mensagem de Erro</span>
+                        <span class="info-value" id="infoLastError" style="color: var(--accent-rose); font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; word-break: break-all; background: rgba(244,63,94,0.05); padding: 0.4rem; border-radius: 0.25rem; border: 1px solid rgba(244,63,94,0.2);">-</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Context variables -->
+            <div class="drawer-section">
+                <h4 class="drawer-section-title">Contexto de Variáveis</h4>
+                <pre class="json-pre" id="infoContext">{}</pre>
+            </div>
+
+            <!-- Last Diff -->
+            <div class="drawer-section" id="diffSection" style="display: none;">
+                <h4 class="drawer-section-title">Último Diff Unificado</h4>
+                <div class="diff-container" id="infoDiff">
+                    <!-- Lines populated dynamically -->
+                </div>
+            </div>
+
+            <!-- Snapshots -->
+            <div class="drawer-section" id="snapshotsSection" style="display: none;">
+                <h4 class="drawer-section-title">Snapshots de Captura (Tela)</h4>
+                <div class="snapshots-grid" id="infoSnapshots">
+                    <!-- Populated dynamically -->
+                </div>
+            </div>
+
+            <!-- Timeline -->
+            <div class="drawer-section">
+                <h4 class="drawer-section-title">Histórico de Verificações</h4>
+                <div class="timeline" id="infoTimeline">
+                    <!-- Populated dynamically -->
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Image Viewer Modal -->
+    <div id="imageModal" style="display: none; position: fixed; inset: 0; background-color: rgba(0,0,0,0.9); z-index: 60; align-items: center; justify-content: center; padding: 2rem;">
+        <span id="closeImageModal" style="position: absolute; top: 1.5rem; right: 2rem; font-size: 2.5rem; color: #fff; cursor: pointer;">&times;</span>
+        <img id="imageModalTarget" src="" alt="Snapshot View" style="max-width: 100%; max-height: 100%; object-fit: contain; border: 1px solid var(--border-color); border-radius: 0.375rem; box-shadow: 0 0 30px rgba(0,0,0,0.5);">
+    </div>
+
+    <script>
+        // State variables
+        let monitorsList = [];
+        let activeMonitorId = null;
+        let pollingInterval = null;
+
+        // On document ready
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchMonitors();
+            
+            // Poll monitors list every 2 seconds
+            pollingInterval = setInterval(fetchMonitors, 2000);
+
+            // Handle drawer closing
+            document.getElementById('drawerCloseBtn').addEventListener('click', closeDrawer);
+            document.getElementById('drawerOverlay').addEventListener('click', closeDrawer);
+
+            // Close image viewer modal
+            document.getElementById('closeImageModal').addEventListener('click', () => {
+                document.getElementById('imageModal').style.display = 'none';
+            });
+            document.getElementById('imageModal').addEventListener('click', (e) => {
+                if (e.target.id === 'imageModal') {
+                    document.getElementById('imageModal').style.display = 'none';
+                }
+            });
+        });
+
+        // Fetch monitors list
+        async function fetchMonitors() {
+            try {
+                const response = await fetch('/api/monitors');
+                if (!response.ok) throw new Error('Falha ao obter lista de monitores');
+                monitorsList = await response.json();
+                
+                updateMetrics(monitorsList);
+                renderTable(monitorsList);
+                
+                // If drawer is open and polling, refresh the generic info (but don't reload history automatically to avoid input interruptions)
+                if (activeMonitorId) {
+                    const monitor = monitorsList.find(m => m.id === activeMonitorId);
+                    if (monitor) {
+                        updateDrawerInfo(monitor);
+                    }
+                }
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
+        // Update metrics display
+        function updateMetrics(list) {
+            document.getElementById('statTotal').innerText = list.length;
+            document.getElementById('statRunning').innerText = list.filter(m => m.status === 'RUNNING' || m.status === 'NOT_FOUND').length;
+            document.getElementById('statPaused').innerText = list.filter(m => m.status === 'PAUSED').length;
+            document.getElementById('statErrors').innerText = list.filter(m => m.status === 'ERROR').length;
+        }
+
+        // Render monitors into table
+        function renderTable(list) {
+            const tbody = document.getElementById('monitorsTableBody');
+            const emptyState = document.getElementById('tableEmptyState');
+            
+            if (list.length === 0) {
+                tbody.innerHTML = '';
+                emptyState.style.display = 'flex';
+                return;
+            }
+            
+            emptyState.style.display = 'none';
+            
+            // Generate rows
+            tbody.innerHTML = list.map(m => {
+                const statusBadge = getStatusBadge(m.status);
+                const lastCheckStr = m.last_check ? formatTime(m.last_check) : '-';
+                
+                // Status action buttons
+                let toggleActionBtn = '';
+                if (m.status === 'RUNNING' || m.status === 'NOT_FOUND') {
+                    toggleActionBtn = `
+                        <button class="btn-icon pause-btn" onclick="pauseMonitor('${m.id}')" title="Pausar Monitor">
+                            <i data-lucide="pause" style="width: 14px; height: 14px;"></i>
+                        </button>
+                    `;
+                } else {
+                    toggleActionBtn = `
+                        <button class="btn-icon play-btn" onclick="startMonitor('${m.id}')" title="Iniciar Monitor">
+                            <i data-lucide="play" style="width: 14px; height: 14px;"></i>
+                        </button>
+                    `;
+                }
+
+                // Delete button disabled if monitor is running
+                const deleteBtn = `
+                    <button class="btn-icon delete-btn" onclick="deleteMonitor('${m.id}')" ${(m.status === 'RUNNING' || m.status === 'NOT_FOUND') ? 'disabled style="opacity: 0.3; cursor: not-allowed;"' : ''} title="Excluir Monitor">
+                        <i data-lucide="trash-2" style="width: 14px; height: 14px;"></i>
+                    </button>
+                `;
+
+                return `
+                    <tr id="row-${m.id}">
+                        <td>
+                            <div class="monitor-name-col">
+                                <span class="monitor-name">${escapeHtml(m.name)}</span>
+                                <span class="monitor-id">${m.id}</span>
+                            </div>
+                        </td>
+                        <td>${statusBadge}</td>
+                        <td><span style="font-size: 0.75rem; text-transform: uppercase; font-weight: 500;">${m.type}</span></td>
+                        <td>
+                            <div style="display: flex; flex-direction: column;">
+                                <span style="font-weight: 500;">${escapeHtml(m.profile)}</span>
+                                <span style="font-size: 0.6875rem; color: var(--text-secondary);">${escapeHtml(m.page_id)}</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div style="display: flex; flex-direction: column; gap: 0.15rem;">
+                                <span class="selector-box" title="${escapeHtml(m.selector)}">${escapeHtml(m.selector)}</span>
+                                <span style="font-size: 0.6875rem; color: var(--text-secondary);">${escapeHtml(m.attribute)}</span>
+                            </div>
+                        </td>
+                        <td>${m.interval}s</td>
+                        <td style="text-align: center; font-weight: 500;">${m.verification_count}</td>
+                        <td style="text-align: center; font-weight: 500; color: ${m.changes_count > 0 ? 'var(--accent-cyan)' : 'inherit'};">${m.changes_count}</td>
+                        <td style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem;">${lastCheckStr}</td>
+                        <td>
+                            <div class="action-buttons">
+                                ${toggleActionBtn}
+                                <button class="btn-icon" onclick="openDrawer('${m.id}')" title="Visualizar Detalhes">
+                                    <i data-lucide="eye" style="width: 14px; height: 14px;"></i>
+                                </button>
+                                ${deleteBtn}
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+            
+            // Re-render lucide icons
+            if (window.lucide) {
+                window.lucide.createIcons();
+            }
+        }
+
+        // Return status badge HTML
+        function getStatusBadge(status) {
+            switch(status) {
+                case 'RUNNING':
+                    return `<span class="badge badge-running"><i data-lucide="play" style="width: 10px; height: 10px;"></i> RUNNING</span>`;
+                case 'PAUSED':
+                    return `<span class="badge badge-paused"><i data-lucide="pause" style="width: 10px; height: 10px;"></i> PAUSED</span>`;
+                case 'NOT_FOUND':
+                    return `<span class="badge badge-not-found"><i data-lucide="search-x" style="width: 10px; height: 10px;"></i> NOT_FOUND</span>`;
+                case 'ERROR':
+                    return `<span class="badge badge-error"><i data-lucide="alert-circle" style="width: 10px; height: 10px;"></i> ERROR</span>`;
+                case 'STOPPED':
+                default:
+                    return `<span class="badge badge-stopped"><i data-lucide="square" style="width: 10px; height: 10px;"></i> STOPPED</span>`;
+            }
+        }
+
+        // API calls for actions
+        async function startMonitor(id) {
+            try {
+                const response = await fetch(`/api/monitors/${id}/start`, { method: 'POST' });
+                if (!response.ok) {
+                    const data = await response.json();
+                    throw new Error(data.detail || 'Falha ao iniciar o monitor');
+                }
+                fetchMonitors();
+            } catch (err) {
+                alert(`Erro: ${err.message}`);
+            }
+        }
+
+        async function pauseMonitor(id) {
+            try {
+                const response = await fetch(`/api/monitors/${id}/pause`, { method: 'POST' });
+                if (!response.ok) {
+                    const data = await response.json();
+                    throw new Error(data.detail || 'Falha ao pausar o monitor');
+                }
+                fetchMonitors();
+            } catch (err) {
+                alert(`Erro: ${err.message}`);
+            }
+        }
+
+        async function deleteMonitor(id) {
+            if (!confirm('Deseja realmente excluir este monitor?')) return;
+            try {
+                const response = await fetch(`/api/monitors/${id}`, { method: 'DELETE' });
+                if (!response.ok) {
+                    const data = await response.json();
+                    throw new Error(data.detail || 'Falha ao excluir o monitor');
+                }
+                fetchMonitors();
+                if (activeMonitorId === id) closeDrawer();
+            } catch (err) {
+                alert(`Erro: ${err.message}`);
+            }
+        }
+
+        // Open Side Drawer Details
+        async function openDrawer(id) {
+            activeMonitorId = id;
+            document.getElementById('drawerOverlay').classList.add('open');
+            document.getElementById('detailDrawer').classList.add('open');
+
+            // Fetch full detail & history
+            try {
+                // Initial updates
+                const monitor = monitorsList.find(m => m.id === id);
+                if (monitor) {
+                    updateDrawerInfo(monitor);
+                }
+                
+                // Fetch detail
+                const resDetail = await fetch(`/api/monitors/${id}`);
+                if (!resDetail.ok) throw new Error('Erro ao obter detalhes');
+                const fullDetails = await resDetail.json();
+                updateDrawerInfo(fullDetails);
+
+                // Fetch history
+                const resHistory = await fetch(`/api/monitors/${id}/history`);
+                if (!resHistory.ok) throw new Error('Erro ao obter histórico');
+                const history = await resHistory.json();
+                renderTimeline(history, id);
+
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
+        // Close Drawer
+        function closeDrawer() {
+            activeMonitorId = null;
+            document.getElementById('drawerOverlay').classList.remove('open');
+            document.getElementById('detailDrawer').classList.remove('open');
+        }
+
+        // Update drawer data details
+        function updateDrawerInfo(m) {
+            document.getElementById('drawerMonitorName').innerText = m.name;
+            document.getElementById('drawerMonitorId').innerText = `UUID: ${m.id}`;
+            document.getElementById('infoType').innerText = m.type;
+            document.getElementById('infoProfile').innerText = m.profile;
+            document.getElementById('infoPageId').innerText = m.page_id;
+            document.getElementById('infoFrameId').innerText = m.frame_id ? m.frame_id : 'Principal';
+            document.getElementById('infoInterval').innerText = `${m.interval}s`;
+            document.getElementById('infoTimeout').innerText = `${m.timeout}s`;
+            document.getElementById('infoStartedAt').innerText = m.started_at ? formatTime(m.started_at) : '-';
+            document.getElementById('infoLastChange').innerText = m.last_change ? formatTime(m.last_change) : '-';
+            
+            // Value & Error
+            document.getElementById('infoLastValue').innerText = m.last_value !== null ? m.last_value : 'Nenhum valor lido';
+            
+            const errorContainer = document.getElementById('errorContainer');
+            if (m.last_error) {
+                document.getElementById('infoLastError').innerText = m.last_error;
+                errorContainer.style.display = 'block';
+            } else {
+                errorContainer.style.display = 'none';
+            }
+
+            // Context JSON
+            document.getElementById('infoContext').innerText = JSON.stringify(m.context, null, 2);
+
+            // Diff Section
+            const diffSection = document.getElementById('diffSection');
+            const diffTarget = document.getElementById('infoDiff');
+            if (m.context && m.context.last_diff) {
+                renderDiff(m.context.last_diff, diffTarget);
+                diffSection.style.display = 'block';
+            } else {
+                diffSection.style.display = 'none';
+            }
+
+            // Snapshots section
+            const snapSection = document.getElementById('snapshotsSection');
+            const snapGrid = document.getElementById('infoSnapshots');
+            if (m.snapshots && m.snapshots.length > 0) {
+                snapGrid.innerHTML = m.snapshots.map(file => {
+                    const cleanTime = extractTimeFromSnapshotName(file);
+                    return `
+                        <div class="snapshot-item" onclick="viewSnapshot('${m.id}', '${file}')">
+                            <img src="/api/monitors/${m.id}/snapshot/${file}" alt="Snapshot">
+                            <div class="snapshot-time">${cleanTime}</div>
+                        </div>
+                    `;
+                }).join('');
+                snapSection.style.display = 'block';
+            } else {
+                snapSection.style.display = 'none';
+            }
+
+            // Lucide
+            if (window.lucide) {
+                window.lucide.createIcons();
+            }
+        }
+
+        // Render timeline history logs
+        function renderTimeline(history, monitorId) {
+            const container = document.getElementById('infoTimeline');
+            if (history.length === 0) {
+                container.innerHTML = '<span style="font-size: 0.8125rem; color: var(--text-secondary);">Nenhum histórico registrado ainda.</span>';
+                return;
+            }
+
+            // Sort newest first
+            const sorted = [...history].reverse();
+
+            container.innerHTML = sorted.map((entry, index) => {
+                const classes = entry.error ? 'error' : 'success';
+                const statusBadge = entry.error ? '<span style="color: var(--accent-rose);">ERRO</span>' : '<span style="color: var(--accent-emerald);">CHECK OK</span>';
+                
+                let diffTrigger = '';
+                let diffId = `timeline-diff-${index}`;
+                if (entry.diff) {
+                    diffTrigger = `
+                        <div class="timeline-diff-trigger" onclick="toggleTimelineDiff('${diffId}')">
+                            <i data-lucide="git-commit" style="width:12px; height:12px;"></i> Visualizar Alteração (Diff)
+                        </div>
+                        <div class="diff-container" id="${diffId}" style="display: none; margin-top: 0.5rem; max-height: 150px;"></div>
+                    `;
+                }
+
+                let snapshotIcon = '';
+                if (entry.snapshot) {
+                    snapshotIcon = `
+                        <button onclick="viewSnapshot('${monitorId}', '${entry.snapshot}')" style="margin-left:auto; display:inline-flex; align-items:center; gap:0.25rem; background: rgba(6,182,212,0.1); border: 1px solid rgba(6,182,212,0.3); color: var(--accent-cyan); font-size: 0.6875rem; padding: 0.2rem 0.4rem; border-radius: 0.25rem; cursor:pointer;">
+                            <i data-lucide="image" style="width: 10px; height:10px;"></i> Ver Screenshot
+                        </button>
+                    `;
+                }
+
+                return `
+                    <div class="timeline-item ${classes}">
+                        <div class="timeline-meta">
+                            <span class="timeline-time">${formatTime(entry.timestamp)}</span>
+                            <span class="timeline-status">${statusBadge}</span>
+                            ${snapshotIcon}
+                        </div>
+                        <div class="timeline-body">
+                            ${entry.error ? `<span style="color: var(--accent-rose);">${escapeHtml(entry.error)}</span>` : `Valor: <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; word-break: break-all; color:#fff;">${escapeHtml(entry.value)}</span>`}
+                        </div>
+                        ${diffTrigger}
+                    </div>
+                `;
+            }).join('');
+
+            // Assign raw diffs privately to trigger click
+            sorted.forEach((entry, index) => {
+                if (entry.diff) {
+                    let diffId = `timeline-diff-${index}`;
+                    let diffContainer = document.getElementById(diffId);
+                    if (diffContainer) {
+                        renderDiff(entry.diff, diffContainer);
+                    }
+                }
+            });
+
+            if (window.lucide) {
+                window.lucide.createIcons();
+            }
+        }
+
+        // Toggle Timeline Diff view
+        function toggleTimelineDiff(id) {
+            const container = document.getElementById(id);
+            if (container.style.display === 'none') {
+                container.style.display = 'block';
+            } else {
+                container.style.display = 'none';
+            }
+        }
+
+        // Open full snapshot modal
+        function viewSnapshot(monitorId, file) {
+            const modal = document.getElementById('imageModal');
+            const img = document.getElementById('imageModalTarget');
+            img.src = `/api/monitors/${monitorId}/snapshot/${file}`;
+            modal.style.display = 'flex';
+        }
+
+        // Helper to format ISO time nicely
+        function formatTime(isoStr) {
+            try {
+                const date = new Date(isoStr);
+                return date.toLocaleString('pt-BR');
+            } catch (e) {
+                return isoStr;
+            }
+        }
+
+        // Helper to extract HH:MM:SS from filename snapshot_YYYYMMDD_HHMMSS.png
+        function extractTimeFromSnapshotName(file) {
+            try {
+                // filename: snapshot_20260710_102030.png -> 10:20:30
+                const parts = file.split('_');
+                if (parts.length >= 3) {
+                    const timePart = parts[2].split('.')[0]; // 102030
+                    return `${timePart.substring(0, 2)}:${timePart.substring(2, 4)}:${timePart.substring(4, 6)}`;
+                }
+            } catch (e) {}
+            return 'Screenshot';
+        }
+
+        // Helper to escape HTML tags
+        function escapeHtml(text) {
+            if (text === null || text === undefined) return '';
+            const map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            };
+            return str = String(text).replace(/[&<>"']/g, function(m) { return map[m]; });
+        }
+
+        // Diff rendering styling helper
+        function renderDiff(diffText, container) {
+            if (!diffText) {
+                container.innerHTML = 'Nenhuma diferença detectada.';
+                return;
+            }
+            const lines = diffText.split('\n');
+            container.innerHTML = lines.map(line => {
+                let cssClass = '';
+                if (line.startsWith('+')) {
+                    cssClass = 'diff-line-added';
+                } else if (line.startsWith('-')) {
+                    cssClass = 'diff-line-removed';
+                } else if (line.startsWith('@@') || line.startsWith('---') || line.startsWith('+++')) {
+                    cssClass = 'diff-line-meta';
+                }
+                return `<div class="${cssClass}">${escapeHtml(line)}</div>`;
+            }).join('');
+        }
+    </script>
+</body>
+</html>

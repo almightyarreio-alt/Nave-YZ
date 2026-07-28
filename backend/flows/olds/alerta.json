@@ -1,0 +1,33 @@
+{
+  "name": "Meu Fluxo",
+  "steps": [
+    {
+      "action": "set",
+      "var": "x",
+      "value": "true"
+    },
+    {
+      "action": "compare",
+      "var": "x",
+      "value": "true",
+      "on_true": [
+        {
+          "action": "notify",
+          "webhook": "http://localhost:5678/notify",
+          "payload": "{x}"
+        }
+      ],
+      "on_false": [
+        {
+          "action": "notify",
+          "webhook": "http://localhost:5678/notify",
+          "payload": "x é false"
+        }
+      ]
+    },
+    {
+      "action": "log",
+      "message": "{x}"
+    }
+  ]
+}

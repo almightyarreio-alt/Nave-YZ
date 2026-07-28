@@ -1,0 +1,28 @@
+{
+  "name": "123444",
+  "steps": [
+    {
+      "action": "navigate",
+      "url": "https://google.com",
+      "wait_until": "networkidle"
+    },
+    {
+      "action": "fill",
+      "selector": "textarea[name=\"q\"]",
+      "value": "Navyauto"
+    },
+    {
+      "action": "press",
+      "selector": "input[type=\"submit\"]",
+      "key": "Enter"
+    },
+    {
+      "action": "wait",
+      "seconds": 2
+    },
+    {
+      "action": "screenshot",
+      "filename": "resultado.png"
+    }
+  ]
+}

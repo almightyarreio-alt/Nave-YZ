@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🧩 Navyauto – Manual para Iniciantes</title>
+  <style>
+    /* RESET E BASE */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+      background: #f1f5f9;
+      color: #0f172a;
+      line-height: 1.6;
+      padding: 2rem 1rem;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+    .header h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #0f172a, #3b82f6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .header p {
+      color: #475569;
+      font-size: 1.1rem;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 1.8rem 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      border: 1px solid #e2e8f0;
+    }
+    .card h2 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .card h2 .badge {
+      font-size: 0.7rem;
+      background: #dbeafe;
+      color: #1e4a8a;
+      padding: 0.1rem 0.8rem;
+      border-radius: 20px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+    .highlight-box {
+      background: #f8fafc;
+      padding: 1rem 1.2rem;
+      border-radius: 10px;
+      border-left: 5px solid #3b82f6;
+      margin: 1rem 0;
+    }
+    .highlight-box strong {
+      display: block;
+      font-size: 0.95rem;
+    }
+    .code-block {
+      background: #0f172a;
+      color: #e2e8f0;
+      padding: 0.8rem 1rem;
+      border-radius: 8px;
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      font-size: 0.85rem;
+      overflow-x: auto;
+      margin: 0.5rem 0;
+    }
+    .code-block .comment {
+      color: #94a3b8;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 0.8rem 0;
+    }
+    .example-box {
+      background: #f8fafc;
+      border-radius: 10px;
+      padding: 0.8rem 1rem;
+      border: 1px solid #e2e8f0;
+    }
+    .example-box .label {
+      font-weight: 600;
+      display: block;
+      font-size: 0.85rem;
+      color: #475569;
+    }
+    .example-box .selector {
+      font-family: monospace;
+      font-size: 0.9rem;
+      background: #e9edf2;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      display: inline-block;
+      margin: 0.2rem 0;
+    }
+    .badge-ok {
+      background: #dcfce7;
+      color: #166534;
+      padding: 0.1rem 0.6rem;
+      border-radius: 12px;
+      font-size: 0.7rem;
+      font-weight: 600;
+    }
+    .badge-avoid {
+      background: #fee2e2;
+      color: #991b1b;
+      padding: 0.1rem 0.6rem;
+      border-radius: 12px;
+      font-size: 0.7rem;
+      font-weight: 600;
+    }
+    .steps-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin: 1.2rem 0 0.5rem;
+    }
+    .step-item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      background: #f8fafc;
+      padding: 0.8rem 1rem;
+      border-radius: 10px;
+      border-left: 4px solid #94a3b8;
+    }
+    .step-item .num {
+      background: #1e293b;
+      color: white;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+    .step-item .content {
+      flex: 1;
+    }
+    .step-item .content strong {
+      display: block;
+      font-weight: 600;
+    }
+    .test-area {
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #e2e8f0;
+    }
+    .test-area label {
+      font-weight: 600;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+    .test-area .field-row {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+    .test-area input {
+      flex: 1;
+      min-width: 200px;
+      padding: 0.5rem 0.8rem;
+      border: 2px solid #d1d9e6;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      transition: border 0.2s, background 0.2s;
+    }
+    .test-area input:focus {
+      outline: none;
+      border-color: #3b82f6;
+    }
+    .test-area input.error {
+      border-color: #ef4444;
+      background: #fef2f2;
+    }
+    .test-area input.success {
+      border-color: #22c55e;
+      background: #f0fdf4;
+    }
+    .test-area .validation-msg {
+      font-size: 0.85rem;
+      min-height: 1.5rem;
+      margin-top: 0.3rem;
+      font-weight: 500;
+    }
+    .test-area .validation-msg.error {
+      color: #dc2626;
+    }
+    .test-area .validation-msg.success {
+      color: #16a34a;
+    }
+    .rules-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.8rem 0;
+    }
+    .rules-list li {
+      padding: 0.4rem 0 0.4rem 1.8rem;
+      position: relative;
+    }
+    .rules-list li::before {
+      content: "✅";
+      position: absolute;
+      left: 0;
+      top: 0.4rem;
+    }
+    .rules-list li.avoid::before {
+      content: "❌";
+    }
+    .footer {
+      text-align: center;
+      color: #94a3b8;
+      font-size: 0.85rem;
+      margin-top: 2rem;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 1.5rem;
+    }
+    .converter-highlight {
+      background: #eef2ff;
+      border-left: 5px solid #4f46e5;
+      padding: 1rem 1.2rem;
+      border-radius: 10px;
+      margin: 1rem 0;
+    }
+    .converter-highlight code {
+      background: #c7d2fe;
+      padding: 0.1rem 0.4rem;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+    @media (max-width: 640px) {
+      body {
+        padding: 1rem;
+      }
+      .card {
+        padding: 1.2rem;
+      }
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+      .step-item {
+        flex-wrap: wrap;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Cabeçalho -->
+  <header class="header">
+    <h1>🧩 Navyauto · Manual para Iniciantes</h1>
+    <p>Aprenda a criar automações sem complicação — com o <strong>Conversor de Elemento</strong> você nunca mais vai errar um seletor!</p>
+  </header>
+
+  <!-- 1. O que é um seletor -->
+  <section class="card">
+    <h2>📍 O que é um seletor CSS?</h2>
+    <div class="highlight-box">
+      <strong>O seletor é o “endereço” do elemento na página.</strong>
+      <p>Ele serve para localizar o elemento e executar ações como clicar, preencher ou extrair dados.<br />
+      <strong>Importante:</strong> o seletor não mostra estilos, apenas identifica o elemento.</p>
+    </div>
+    <p>No Navyauto Blocks, você usa seletores nos campos marcados com <strong>“Seletor CSS”</strong>. Em vez de adivinhar, você pode usar o <strong>🔍 Conversor de Elemento</strong> para gerar o seletor automaticamente.</p>
+  </section>
+
+  <!-- 2. Conversor de Elemento (NOVO) -->
+  <section class="card">
+    <h2>🔍 Como usar o Conversor de Elemento <span class="badge">novo!</span></h2>
+    <div class="converter-highlight">
+      <strong>✨ A ferramenta que transforma HTML em seletor pronto para usar</strong>
+      <p style="margin-top:0.3rem;">Basta copiar o <strong>outerHTML</strong> do elemento que você quer automatizar, colar no conversor e ele sugere os melhores seletores — classificados por estabilidade.</p>
+    </div>
+
+    <div class="steps-list">
+      <div class="step-item">
+        <span class="num">1</span>
+        <div class="content">
+          <strong>Clique em 🔍 ao lado do campo “Seletor CSS”</strong>
+          <span>Isso abre o Conversor de Elemento dentro do editor de blocos.</span>
+        </div>
+      </div>
+      <div class="step-item">
+        <span class="num">2</span>
+        <div class="content">
+          <strong>Obtenha o outerHTML do elemento</strong>
+          <span>No navegador, clique com o botão direito no elemento → <strong>Inspecionar</strong> → no DevTools, clique com o direito no nó → <strong>Copiar → Copiar outerHTML</strong>.</span>
+        </div>
+      </div>
+      <div class="step-item">
+        <span class="num">3</span>
+        <div class="content">
+          <strong>Cole no conversor e clique em “Analisar”</strong>
+          <span>O sistema vai extrair todos os atributos e gerar uma lista de seletores candidatos.</span>
+        </div>
+      </div>
+      <div class="step-item">
+        <span class="num">4</span>
+        <div class="content">
+          <strong>Escolha o melhor e clique em “Usar”</strong>
+          <span>O seletor será automaticamente preenchido no campo do bloco. Pronto, sem digitar nada!</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="background: #fef9e7; padding: 0.8rem 1rem; border-radius: 8px; margin-top: 0.8rem; border-left: 4px solid #f59e0b;">
+      💡 <strong>Dica:</strong> O conversor classifica os seletores como <strong>✅ Recomendado</strong> (mais estável), <strong>👍 Alternativo</strong> (funciona, mas com ressalvas) ou <strong>⚠️ Evitar</strong> (pode quebrar). Prefira sempre os recomendados!
+    </div>
+  </section>
+
+  <!-- 3. Tipos de seletores e exemplos -->
+  <section class="card">
+    <h2>🧩 Tipos de seletores <span class="badge">estáveis vs. frágeis</span></h2>
+    <div class="grid-2">
+      <div class="example-box">
+        <span class="label">✅ Estável (recomendado)</span>
+        <ul style="margin: 0.4rem 0 0 1.2rem; font-size:0.9rem;">
+          <li><span class="selector">[name="q"]</span> — atributo name</li>
+          <li><span class="selector">[aria-label="Pesquisar"]</span> — atributo acessível</li>
+          <li><span class="selector">.gLFyf</span> — classe específica</li>
+          <li><span class="selector">#login-button</span> — ID estável</li>
+        </ul>
+        <span class="badge-ok" style="margin-top:0.3rem; display:inline-block;">✔️ Preferir</span>
+      </div>
+      <div class="example-box">
+        <span class="label">⚠️ Frágil (evitar se possível)</span>
+        <ul style="margin: 0.4rem 0 0 1.2rem; font-size:0.9rem;">
+          <li><span class="selector">#APjFqb</span> — ID dinâmico (muda a cada sessão)</li>
+          <li><span class="selector">div > span > a > button</span> — caminho longo</li>
+          <li><span class="selector">.header > .nav > ul > li:nth-child(3)</span> — dependente de posição</li>
+        </ul>
+        <span class="badge-avoid" style="margin-top:0.3rem; display:inline-block;">⚠️ Pode quebrar</span>
+      </div>
+    </div>
+    <div style="margin-top: 0.8rem; background: #fef9e7; padding: 0.8rem 1rem; border-radius: 8px; border-left: 4px solid #f59e0b;">
+      💡 <strong>Dica de ouro:</strong> IDs como <code>#APjFqb</code> funcionam, mas podem mudar a cada visita. Prefira atributos como <code>[name="q"]</code> ou <code>[aria-label]</code> — eles são mais estáveis.
+    </div>
+  </section>
+
+  <!-- 4. Como copiar o outerHTML (reforço) -->
+  <section class="card">
+    <h2>📋 Como copiar o outerHTML</h2>
+    <p>Para usar o Conversor de Elemento, você precisa do outerHTML do elemento. Siga este passo a passo:</p>
+    <div class="steps-list">
+      <div class="step-item">
+        <span class="num">1</span>
+        <div class="content">
+          <strong>Clique com o botão direito sobre o elemento</strong>
+          <span>No navegador, clique no campo, botão ou texto que você quer automatizar.</span>
+        </div>
+      </div>
+      <div class="step-item">
+        <span class="num">2</span>
+        <div class="content">
+          <strong>Escolha “Inspecionar”</strong>
+          <span>Isso abre as Ferramentas do Desenvolvedor (DevTools) com o elemento destacado.</span>
+        </div>
+      </div>
+      <div class="step-item">
+        <span class="num">3</span>
+        <div class="content">
+          <strong>Clique com o botão direito no código destacado (no painel Elements)</strong>
+          <span>No DevTools, o elemento aparecerá em azul. Clique com o direito sobre ele.</span>
+        </div>
+      </div>
+      <div class="step-item">
+        <span class="num">4</span>
+        <div class="content">
+          <strong>Copiar → Copiar outerHTML</strong>
+          <span>No menu, vá em <em>“Copiar”</em> e depois <em>“Copiar outerHTML”</em>. Pronto! Agora cole no conversor.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Teste seu seletor (interativo) -->
+  <section class="card">
+    <h2>✏️ Teste seu seletor aqui</h2>
+    <p>Digite um seletor CSS e veja se ele é válido (simulação de validação). Use para treinar ou conferir seus seletores.</p>
+    <div class="test-area">
+      <label for="testSelector">Seletor CSS:</label>
+      <div class="field-row">
+        <input type="text" id="testSelector" placeholder="ex: [name='q']" />
+        <button id="testBtn" style="padding:0.4rem 1.2rem; background:#3b82f6; border:none; border-radius:8px; color:white; font-weight:600; cursor:pointer;">Testar</button>
+      </div>
+      <div class="validation-msg" id="testMsg"></div>
+    </div>
+  </section>
+
+  <!-- 6. Regras práticas -->
+  <section class="card">
+    <h2>📋 Regras práticas para evitar erros</h2>
+    <ul class="rules-list">
+      <li><strong>Prefira IDs</strong> quando forem estáveis (ex: <code>#login-btn</code>).</li>
+      <li><strong>Use classes</strong> se forem únicas e não mudarem (ex: <code>.header-title</code>).</li>
+      <li><strong>Atributos</strong> como <code>name</code>, <code>aria-label</code>, <code>role</code> são os mais confiáveis.</li>
+      <li><strong>Evite caminhos longos</strong> como <code>div > span > a > button</code>.</li>
+      <li><strong>Sempre teste no Console</strong> antes de colocar no Navyauto.</li>
+      <li class="avoid"><strong>Não use IDs gerados automaticamente</strong> (ex: <code>#APjFqb</code>) — eles mudam.</li>
+      <li class="avoid"><strong>Não use seletores que dependem de posição</strong> (ex: <code>:nth-child(3)</code>) a menos que seja realmente necessário.</li>
+    </ul>
+  </section>
+
+  <!-- 7. Comparação de exemplos -->
+  <section class="card">
+    <h2>⚖️ Exemplo prático no Navyauto</h2>
+    <div style="display: flex; flex-direction: column; gap: 1rem;">
+      <div style="background: #fee2e2; padding: 0.8rem 1rem; border-radius: 10px; border-left: 5px solid #ef4444;">
+        <strong style="color: #991b1b;">❌ Frágil (pode quebrar):</strong>
+        <div class="code-block" style="background: #1e293b; margin-top: 0.3rem;">
+          { "action": "fill", "selector": "#APjFqb", "value": "teste" }
+        </div>
+        <span style="font-size:0.85rem; color: #991b1b;">O ID <code>#APjFqb</code> pode mudar a cada sessão.</span>
+      </div>
+      <div style="background: #dcfce7; padding: 0.8rem 1rem; border-radius: 10px; border-left: 5px solid #22c55e;">
+        <strong style="color: #166534;">✅ Estável (recomendado):</strong>
+        <div class="code-block" style="background: #1e293b; margin-top: 0.3rem;">
+          { "action": "fill", "selector": "[name='q']", "value": "teste" }
+        </div>
+        <span style="font-size:0.85rem; color: #166534;">O atributo <code>name</code> é estável e não muda.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rodapé -->
+  <footer class="footer">
+    🧩 Navyauto · Manual para iniciantes · Use o <strong>Conversor de Elemento</strong> e nunca mais quebre suas automações.
+  </footer>
+</div>
+
+<script>
+  // ============================================================
+  // SIMULAÇÃO DE VALIDAÇÃO DE SELETOR (apenas para demonstração)
+  // ============================================================
+  const testInput = document.getElementById('testSelector');
+  const testBtn = document.getElementById('testBtn');
+  const testMsg = document.getElementById('testMsg');
+
+  // Lista de padrões aceitos para simulação
+  const validPatterns = [
+    /^#\w+$/,            // #id
+    /^\.[\w-]+$/,        // .class
+    /^\[[\w-]+=(["'])[^"']+\1\]$/, // [attr="value"]
+    /^\[[\w-]+=(["'])[^"']+\1\]\[[\w-]+=(["'])[^"']+\1\]$/, // múltiplos atributos
+    /^input\[[\w-]+=(["'])[^"']+\1\]$/,
+    /^button\[[\w-]+=(["'])[^"']+\1\]$/,
+    /^textarea\[[\w-]+=(["'])[^"']+\1\]$/,
+  ];
+
+  function isValidSelector(str) {
+    str = str.trim();
+    if (str === '') return false;
+    for (let pattern of validPatterns) {
+      if (pattern.test(str)) return true;
+    }
+    // Aceita tag simples
+    if (/^[a-z]+$/.test(str)) return true;
+    return false;
+  }
+
+  function testSelector() {
+    const val = testInput.value.trim();
+    if (val === '') {
+      testInput.className = 'error';
+      testMsg.className = 'validation-msg error';
+      testMsg.textContent = '⚠️ Digite um seletor para testar.';
+      return;
+    }
+    const valid = isValidSelector(val);
+    if (valid) {
+      testInput.className = 'success';
+      testMsg.className = 'validation-msg success';
+      testMsg.textContent = '✅ Seletor válido (simulação) — provavelmente funcionará.';
+    } else {
+      testInput.className = 'error';
+      testMsg.className = 'validation-msg error';
+      testMsg.textContent = '❌ Seletor inválido ou muito frágil. Tente um mais simples (ex: [name="email"]).';
+    }
+  }
+
+  testBtn.addEventListener('click', testSelector);
+  testInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') testSelector();
+  });
+  // Limpa validação ao digitar
+  testInput.addEventListener('input', () => {
+    testInput.className = '';
+    testMsg.textContent = '';
+  });
+
+  console.log('🧩 Manual atualizado com o Conversor de Elemento!');
+</script>
+</body>
+</html>

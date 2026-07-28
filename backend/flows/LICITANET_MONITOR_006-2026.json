@@ -1,0 +1,43 @@
+{
+  "name": "LICITANET_MONITOR_006-2026",
+  "steps": [
+    {
+      "action": "monitor",
+      "selector": "#divLotesChatLances > div:nth-child(4) > div > div.col-xs-12.col-sm-7.col-md-8.sidebar-right-open-chat > div > div.card-body.chat-card-body > div.chat-card-body-view > div.chat-box.medium-scroll",
+      "attribute": "innerHTML",
+      "interval": 5,
+      "timeout": 20,
+      "save_snapshots": true,
+      "max_history": 50,
+      "name": "Monitor do Chat",
+      "on_change": [
+        {
+          "action": "log",
+          "message": "O chat foi alterado!"
+        },
+        {
+          "action": "notify",
+          "webhook": "http://localhost:5678/notify",
+          "payload": "CHAT MUDOU"
+        },
+        {
+          "action": "extract",
+          "selector": "#divLotesChatLances > div:nth-child(4) > div > div.col-xs-12.col-sm-7.col-md-8.sidebar-right-open-chat > div > div.card-body.chat-card-body > div.chat-card-body-view > div.chat-box.medium-scroll",
+          "attribute": "textContent",
+          "save_as": "ultimo_chat"
+        }
+      ],
+      "on_not_found": [
+        {
+          "action": "notify",
+          "webhook": "http://localhost:5678/notify",
+          "payload": "CHAT NÃO ENCONTRADO"
+        },
+        {
+          "action": "flow",
+          "flow": "LICITANET_ESTADO_CRETA.json"
+        }
+      ]
+    }
+  ]
+}
